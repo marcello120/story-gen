@@ -1,6 +1,6 @@
 "use client";
 
-import type {Place, MotifValue, PoolData} from "@/lib/types";
+import type {Place, Modifier, ModifierDef, MotifValue, PoolData} from "@/lib/types";
 import Motif from "./Motif";
 import ModifierList from "./ModifierList";
 
@@ -12,9 +12,13 @@ interface PlaceDisplayProps {
     onNameSwap: (newValue: MotifValue) => void;
     onOriginSwap: (newValue: MotifValue) => void;
     onModSwap: (modIndex: number, newValue: MotifValue) => void;
+    onModRemove: (modIndex: number) => void;
+    onModAdd: (mod: Modifier) => void;
+    modDefs: readonly ModifierDef[];
+    maxMods: number;
 }
 
-export default function PlaceDisplay({label, place, suffix, pools, onNameSwap, onOriginSwap, onModSwap}: PlaceDisplayProps) {
+export default function PlaceDisplay({label, place, suffix, pools, onNameSwap, onOriginSwap, onModSwap, onModRemove, onModAdd, modDefs, maxMods}: PlaceDisplayProps) {
     return (
         <div className="mb-1">
             <div>
@@ -26,7 +30,15 @@ export default function PlaceDisplay({label, place, suffix, pools, onNameSwap, o
                 <span className="text-gray-500 dark:text-gray-400">)</span>
                 {suffix && <span className="text-gray-500 dark:text-gray-400"> — {suffix}</span>}
             </div>
-            <ModifierList mods={place.mods} pools={pools} onModSwap={onModSwap} />
+            <ModifierList
+                mods={place.mods}
+                pools={pools}
+                onModSwap={onModSwap}
+                onModRemove={onModRemove}
+                onModAdd={onModAdd}
+                modDefs={modDefs}
+                maxMods={maxMods}
+            />
         </div>
     );
 }

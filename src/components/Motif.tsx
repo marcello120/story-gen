@@ -2,6 +2,7 @@
 
 import type {MotifValue, PoolData} from "@/lib/types";
 import {maybe, pickOne} from "@/lib/helpers";
+import RerollButton from "./RerollButton";
 
 function reroll(pools: PoolData, motif: MotifValue): MotifValue {
     const pool = motif.preferred && maybe(0.7) ? motif.preferred : motif.pool;
@@ -25,14 +26,7 @@ export default function Motif({value, pools, onSwap}: MotifProps) {
             <span className="text-xs text-gray-400 dark:text-gray-500">
                 [{value.pool}]
             </span>
-            <button
-                type="button"
-                onClick={() => onSwap(reroll(pools, value))}
-                className="text-xs text-gray-500 dark:text-gray-400 hover:text-amber-700 dark:hover:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30 rounded px-1 cursor-pointer transition-colors"
-                title="Swap for a new motif"
-            >
-                ↻
-            </button>
+            <RerollButton onClick={() => onSwap(reroll(pools, value))} />
         </span>
     );
 }

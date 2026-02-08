@@ -100,7 +100,7 @@ export interface MentorBeat {
     place: MotifValue;
     supernaturalBeing: MotifValue | null;
     talismans: MotifValue[];
-    learnsAbout: string;
+    learnsAbout: string | null;
     trial: MotifValue | null;
 }
 

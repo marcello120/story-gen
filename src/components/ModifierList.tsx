@@ -1,25 +1,48 @@
 "use client";
 
-import type {Modifier, MotifValue, PoolData} from "@/lib/types";
+import type {Modifier, ModifierDef, MotifValue, PoolData} from "@/lib/types";
 import Motif from "./Motif";
+import RemoveButton from "./RemoveButton";
+import AddModifierDropdown from "./AddModifierDropdown";
 
 interface ModifierListProps {
     mods: Modifier[];
     pools: PoolData;
     onModSwap: (modIndex: number, newValue: MotifValue) => void;
+    onModRemove: (modIndex: number) => void;
+    onModAdd: (mod: Modifier) => void;
+    modDefs: readonly ModifierDef[];
+    maxMods: number;
     indent?: boolean;
 }
 
-export default function ModifierList({mods, pools, onModSwap, indent = false}: ModifierListProps) {
-    if (mods.length === 0) return null;
+export default function ModifierList({mods, pools, onModSwap, onModRemove, onModAdd, modDefs, maxMods, indent = false}: ModifierListProps) {
+    const usedLabels = new Set(mods.map((m) => m.label));
+    const availableModDefs = modDefs.filter((d) => !usedLabels.has(d.label));
+    const atMax = mods.length >= maxMods || availableModDefs.length === 0;
+    const ml = indent ? "ml-8" : "ml-6";
+
     return (
-        <ul className={indent ? "ml-8" : "ml-6"}>
-            {mods.map((mod, i) => (
-                <li key={i} className="text-sm text-gray-700 dark:text-gray-300">
-                    <span className="text-gray-500 dark:text-gray-400">{mod.label}:</span>{" "}
-                    <Motif value={mod.value} pools={pools} onSwap={(v) => onModSwap(i, v)} />
-                </li>
-            ))}
-        </ul>
+        <div>
+            {mods.length > 0 && (
+                <ul className={ml}>
+                    {mods.map((mod, i) => (
+                        <li key={i} className="text-sm text-gray-700 dark:text-gray-300 flex items-baseline gap-1">
+                            <span className="text-gray-500 dark:text-gray-400">{mod.label}:</span>{" "}
+                            <Motif value={mod.value} pools={pools} onSwap={(v) => onModSwap(i, v)} />
+                            <RemoveButton onClick={() => onModRemove(i)} title="Remove this modifier" />
+                        </li>
+                    ))}
+                </ul>
+            )}
+            <div className={`${ml} mt-1`}>
+                <AddModifierDropdown
+                    availableModDefs={availableModDefs}
+                    pools={pools}
+                    onAdd={onModAdd}
+                    disabled={atMax}
+                />
+            </div>
+        </div>
     );
 }
