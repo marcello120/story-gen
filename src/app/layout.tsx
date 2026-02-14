@@ -1,15 +1,23 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import {Cinzel, Cinzel_Decorative, IM_Fell_English} from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
+const cinzel = Cinzel({
+    variable: "--font-cinzel",
     subsets: ["latin"],
+    weight: ["400", "700", "900"],
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const cinzelDeco = Cinzel_Decorative({
+    variable: "--font-cinzel-deco",
     subsets: ["latin"],
+    weight: ["400", "700", "900"],
+});
+
+const fellEnglish = IM_Fell_English({
+    variable: "--font-fell",
+    subsets: ["latin"],
+    weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +33,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${cinzel.variable} ${cinzelDeco.variable} ${fellEnglish.variable}`}
         >
         {children}
         </body>

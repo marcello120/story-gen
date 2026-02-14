@@ -20,10 +20,10 @@ interface MotifProps {
 export default function Motif({value, pools, onSwap}: MotifProps) {
     return (
         <span className="inline-flex items-baseline gap-1">
-            <span className="font-bold text-amber-700 dark:text-amber-400">
+            <span className="motif-text">
                 {value.text}
             </span>
-            <span className="text-xs text-gray-400 dark:text-gray-500">
+            <span className="pool-tag">
                 [{value.pool}]
             </span>
             <RerollButton onClick={() => onSwap(reroll(pools, value))} />

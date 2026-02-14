@@ -7,6 +7,7 @@ import {generateStory} from "@/lib/engine";
 import {storyToMarkdown} from "@/lib/markdown";
 import {syncStory} from "@/lib/sync";
 import StoryView from "@/components/StoryView";
+import {FileBraces, FilePen, FileUp, RefreshCcw} from "lucide-react";
 
 export default function Home() {
     const [pools, setPools] = useState<PoolData | null>(null);
@@ -64,60 +65,76 @@ export default function Home() {
             }
         };
         reader.readAsText(file);
-        // Reset so the same file can be re-imported
         e.target.value = "";
     }, []);
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
-                <p className="text-gray-500 dark:text-gray-400">Loading motif data...</p>
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="label-text text-lg">Loading motif data...</p>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-            <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="min-h-screen  background-style">
+            <div className="max-w-3xl mx-auto px-6 py-10 map-container">
+                {/* Corner flourishes */}
+                <span className="map-corner map-corner-tl" aria-hidden="true">&#10087;</span>
+                <span className="map-corner map-corner-tr" aria-hidden="true">&#10087;</span>
+                <span className="map-corner map-corner-bl" aria-hidden="true">&#10087;</span>
+                <span className="map-corner map-corner-br" aria-hidden="true">&#10087;</span>
+
                 <header className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                        Mythslop
-                    </h1>
-                    <p className="text-gray-500 dark:text-gray-400 mb-6">
-                        Generate a Hero&apos;s Journey from the Thompson Motif Index
-                    </p>
-                    <div className="flex items-center justify-center gap-3">
+                    {/* Compass rose */}
+                    <div className="compass-rose" aria-hidden="true">
+                        <img src="/logo.png" alt=""/>
+                    </div>
+
+                    {/* Cartouche title */}
+                    <div className="cartouche">
+                        <h1 className="cartouche-title font-bold mb-0">
+                            Mythslop
+                        </h1>
+                    </div>
+
+                    {/* Decorative divider */}
+                    <div className="divider-flourish mb-3 mt-2" aria-hidden="true">
+                        &#8212;&#10040;&#8212;
+                    </div>
+
+                    <div className="flex items-center justify-center m-3 gap-3">
                         <button
                             type="button"
                             onClick={generate}
-                            className="px-6 py-2.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-medium cursor-pointer transition-colors shadow-sm"
+                            className="px-6 py-2.5 rounded-lg btn-gold font-medium cursor-pointer"
                         >
-                            {story ? "Generate New Story" : "Generate Story"}
+                            {story ? <RefreshCcw /> : "Generate"}
                         </button>
                         {story && (
                             <>
                                 <button
                                     type="button"
                                     onClick={exportJson}
-                                    className="px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors text-sm"
+                                    className="px-4 py-2.5 rounded-lg btn-outline cursor-pointer text-sm"
                                 >
-                                    ⬇ JSON
+                                    <FileBraces />
                                 </button>
                                 <button
                                     type="button"
                                     onClick={exportMarkdown}
-                                    className="px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors text-sm"
+                                    className="px-4 py-2.5 rounded-lg btn-outline cursor-pointer text-sm"
                                 >
-                                    ⬇ MD
+                                    <FilePen />
                                 </button>
                             </>
                         )}
                         <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors text-sm"
+                            className="px-4 py-2.5 rounded-lg btn-outline cursor-pointer text-sm"
                         >
-                            ➕ JSON
+                            <FileUp />
                         </button>
                         <input
                             ref={fileInputRef}
@@ -134,10 +151,20 @@ export default function Home() {
                 )}
 
                 {!story && (
-                    <div className="text-center py-20 text-gray-400 dark:text-gray-600">
+                    <div className="text-center py-20 label-text">
                         Click the button above to generate a story
                     </div>
                 )}
+
+                {/* Map footer */}
+                <footer className="text-center mt-10">
+                    <div className="divider-flourish mb-3" aria-hidden="true">
+                        &#8212;&#10040;&#8212;
+                    </div>
+                    <p className="map-footer">
+                        Here Be Dragons
+                    </p>
+                </footer>
             </div>
         </div>
     );

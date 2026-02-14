@@ -1,26 +1,788 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===========================================================================
+   MEDIEVAL MAP THEME
+   =========================================================================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+    /* Aged parchment tones */
+    --background: #e8d5b0;
+    --background-card: #f0e4cc;
+    --foreground: #1a0e04;
+    --foreground-muted: #4a3525;
+    --foreground-faint: #7a6040;
+
+    /* Gold / illumination */
+    --gold: #7a5c0a;
+    --gold-bright: #a07810;
+    --gold-light: #e8c84a;
+    --gold-faint: #eedcaa;
+
+    /* Vermillion — medieval rubric red */
+    --red: #8b2500;
+    --red-light: #c44020;
+
+    /* Map blue — ink for seas & titles */
+    --blue: #0e1f38;
+    --blue-mid: #1e3a5c;
+    --blue-light: #2a5580;
+    --blue-faint: #c0d0e0;
+
+    /* Borders */
+    --border: #a08040;
+    --border-light: #c0a458;
+    --border-card: #b09248;
+    --border-dark: #706020;
+
+    /* Shadows */
+    --shadow-color: rgba(80, 50, 20, 0.2);
+    --shadow-card: 0 3px 10px var(--shadow-color), 0 1px 4px rgba(80, 50, 20, 0.12);
+
+    /* Button */
+    --btn-primary-bg: #8b6914;
+    --btn-primary-hover: #725510;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #18120a;
+        --background-card: #241c10;
+        --foreground: #ede4d0;
+        --foreground-muted: #c0a880;
+        --foreground-faint: #8a7858;
+
+        --gold: #daa520;
+        --gold-bright: #f0c840;
+        --gold-light: #b89820;
+        --gold-faint: #3a3014;
+
+        --red: #d04828;
+        --red-light: #f07050;
+
+        --blue: #90c0f0;
+        --blue-mid: #70a8e0;
+        --blue-light: #4080b8;
+        --blue-faint: #1a2a3a;
+
+        --border: #6a5830;
+        --border-light: #584a28;
+        --border-card: #584c2a;
+        --border-dark: #4a4020;
+
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --shadow-card: 0 3px 10px var(--shadow-color);
+
+        --btn-primary-bg: #9e7a1a;
+        --btn-primary-hover: #c4960c;
+    }
 }
 
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-fell);
+    --font-mono: var(--font-fell);
+}
+
+/* ===========================================================================
+   BODY — AGED PARCHMENT WITH VIGNETTE
+   =========================================================================== */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    font-family: var(--font-fell), "IM Fell English", "Georgia", "Palatino Linotype", serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+
+    /* Multi-layer parchment texture */
+    background-color: var(--background);
+    background-image: /* Subtle fiber / grain noise */ repeating-conic-gradient(
+            color-mix(in srgb, var(--background) 94%, #8B7355) 0% 25%,
+            transparent 0% 50%
+    ),
+        /* Larger mottled stain patches */ radial-gradient(ellipse at 15% 10%, color-mix(in srgb, var(--background) 80%, #a08050) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 25%, color-mix(in srgb, var(--background) 82%, #90704a) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, color-mix(in srgb, var(--background) 85%, #a09060) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 60%, color-mix(in srgb, var(--background) 88%, #887040) 0%, transparent 35%),
+        /* Base warm gradient */ radial-gradient(
+            ellipse at 40% 30%,
+            color-mix(in srgb, var(--background) 82%, #fff) 0%,
+            var(--background) 40%,
+            color-mix(in srgb, var(--background) 88%, #6b5340) 100%
+    );
+    background-size: 3px 3px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-attachment: fixed;
+}
+
+/* Vignette — burnt/darkened edges like an aged map */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(
+            ellipse at center,
+            transparent 50%,
+            color-mix(in srgb, var(--blue) 60%, #3e2010) 100%
+    );
+    opacity: 0.4;
+}
+
+/* ===========================================================================
+   MAP CONTAINER — ORNATE MULTI-RING BORDER WITH CORNER FLOURISHES
+   =========================================================================== */
+
+.background-style {
+    background-image: url("/rocky-wall.png");
+    background-color: var(--blue) !important;
+}
+
+.map-container {
+    background: radial-gradient(
+            ellipse at center,
+            transparent 50%,
+            color-mix(in srgb, var(--blue) 60%, #3e2010) 100%
+    );
+    position: relative;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+    background: var(--background);
+}
+
+/* Outer decorative border ring */
+.map-container::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 2px solid var(--border);
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Inner decorative border ring */
+.map-container::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/* Corner flourishes — decorative fleurons */
+.map-corner {
+    position: absolute;
+    color: var(--border);
+    font-size: 1.6rem;
+    line-height: 1;
+    opacity: 0.55;
+    z-index: 1;
+}
+
+.map-corner-tl {
+    top: -2px;
+    left: 4px;
+}
+
+.map-corner-tr {
+    top: -2px;
+    right: 4px;
+}
+
+.map-corner-bl {
+    bottom: -2px;
+    left: 4px;
+}
+
+.map-corner-br {
+    bottom: -2px;
+    right: 4px;
+}
+
+/* ===========================================================================
+   CARTOUCHE — ORNATE TITLE FRAME
+   =========================================================================== */
+
+.cartouche {
+    position: relative;
+    display: inline-block;
+    padding: 0.8rem 2.5rem 0.6rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Cartouche background shape */
+.cartouche::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--background-card) 95%, #fff) 0%,
+            var(--background-card) 100%
+    );
+    border: 2px solid var(--border);
+    border-radius: 50% / 30%;
+    box-shadow: inset 0 1px 4px rgba(140, 100, 40, 0.15),
+    0 2px 8px rgba(80, 50, 20, 0.15);
+}
+
+/* Cartouche inner line */
+.cartouche::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--border-light);
+    border-radius: 50% / 30%;
+    opacity: 0.5;
+}
+
+.cartouche-title {
+    position: relative;
+    font-size: 2.5rem;
+    z-index: 1;
+    font-family: var(--font-cinzel-deco), "Cinzel Decorative", serif;
+    color: var(--blue);
+    text-shadow: 0 1px 0 rgba(255, 235, 180, 0.5);
+}
+
+.cartouche-subtitle {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-fell), "IM Fell English", serif;
+    font-style: italic;
+    color: var(--foreground-muted);
+}
+
+/* ===========================================================================
+   COMPASS ROSE — PURE CSS DECORATIVE ELEMENT
+   =========================================================================== */
+
+.compass-rose {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+}
+
+.compass-rose::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+}
+
+.compass-rose::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border: 1.5px solid var(--border);
+}
+
+.compass-n, .compass-e, .compass-s, .compass-w {
+    position: absolute;
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--border-dark);
+    line-height: 1;
+}
+
+.compass-n {
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.compass-s {
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.compass-e {
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.compass-w {
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.compass-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--border-dark);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Inner diamond points */
+.compass-diamond {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.compass-diamond::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 10px solid var(--border-dark);
+}
+
+.compass-diamond::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 10px solid var(--border);
+}
+
+
+/* ===========================================================================
+   PAPER CARD — AGED SCROLL/DOCUMENT LOOK
+   =========================================================================== */
+
+.paper-card {
+    background: /* Subtle fiber grain on card */ repeating-conic-gradient(
+            color-mix(in srgb, var(--background-card) 96%, #a08050) 0% 25%,
+            transparent 0% 50%
+    ),
+    linear-gradient(
+            170deg,
+            color-mix(in srgb, var(--background-card) 92%, #fff) 0%,
+            var(--background-card) 40%,
+            color-mix(in srgb, var(--background-card) 92%, #887040) 100%
+    );
+    background-size: 3px 3px, 100% 100%;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-card);
+    position: relative;
+}
+
+/* Gold illuminated top edge */
+.paper-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--gold) 15%,
+            var(--gold-bright) 50%,
+            var(--gold) 85%,
+            transparent 100%
+    );
+    border-radius: 8px 8px 0 0;
+    opacity: 0.5;
+}
+
+/* ===========================================================================
+   BEAT TITLE — MEDIEVAL MAP LEGEND / CHAPTER HEADING
+   =========================================================================== */
+
+.beat-title {
+    font-family: var(--font-cinzel-deco), "Cinzel Decorative", serif;
+    color: var(--blue);
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+    position: relative;
+}
+
+/* Decorative underline with diamond center */
+.beat-title::after {
+    content: "";
+    display: block;
+    margin-top: 0.3rem;
+    height: 1px;
+    background: linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--border) 20%,
+            var(--gold) 50%,
+            var(--border) 80%,
+            transparent 100%
+    );
+}
+
+/* ===========================================================================
+   BEAT NUMBER MARKER — MAP WAYPOINT STYLE
+   =========================================================================== */
+
+.beat-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--gold-faint);
+    color: var(--blue);
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+}
+
+/* ===========================================================================
+   TRAIL LINE — DOTTED PATH BETWEEN BEATS
+   =========================================================================== */
+
+.trail-connector {
+    display: flex;
+    justify-content: center;
+    padding: 0.15rem 0;
+}
+
+.trail-line {
+    width: 2px;
+    height: 28px;
+    background: repeating-linear-gradient(
+            to bottom,
+            var(--border) 0px,
+            var(--border) 4px,
+            transparent 4px,
+            transparent 8px
+    );
+    opacity: 0.5;
+}
+
+/* ===========================================================================
+   MOTIF TEXT — ILLUMINATED MANUSCRIPT HIGHLIGHT
+   =========================================================================== */
+
+.motif-text {
+    /* default serif font */
+
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* ===========================================================================
+   LABELS & TAGS
+   =========================================================================== */
+
+.label-text {
+    color: var(--blue);
+    font-weight: 900 !important;
+    font-style: italic;
+}
+
+.pool-tag {
+    color: var(--foreground-faint);
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+/* ===========================================================================
+   TEXT UTILITIES
+   =========================================================================== */
+
+.text-gold {
+    color: var(--gold);
+}
+
+.text-gold-bright {
+    color: var(--gold-bright);
+}
+
+.text-blue-map {
+    color: var(--blue);
+}
+
+.text-red-rubric {
+    color: var(--red);
+}
+
+/* ===========================================================================
+   GOLD BUTTON — WAX SEAL / ILLUMINATED PRESS
+   =========================================================================== */
+
+.btn-gold {
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--btn-primary-bg) 80%, #fff) 0%,
+            var(--btn-primary-bg) 45%,
+            color-mix(in srgb, var(--btn-primary-bg) 70%, #000) 100%
+    );
+    color: #fff;
+    border: 1.5px solid color-mix(in srgb, var(--btn-primary-bg) 60%, #000);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 6px rgba(80, 50, 20, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.btn-gold:hover {
+    background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--btn-primary-bg) 70%, #fff) 0%,
+            color-mix(in srgb, var(--btn-primary-bg) 90%, #fff) 45%,
+            var(--btn-primary-bg) 100%
+    );
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(80, 50, 20, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.btn-gold:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(80, 50, 20, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================================================================
+   OUTLINE BUTTON — MAP LEGEND STYLE
+   =========================================================================== */
+
+.btn-outline {
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    background: transparent;
+    color: var(--blue);
+    border: 1.5px solid var(--border-dark);
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-outline:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(14, 31, 56, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+    .btn-outline {
+        color: var(--blue);
+        border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+        background: var(--blue-faint);
+        border-color: var(--blue);
+        color: var(--blue);
+        box-shadow: 0 2px 8px rgba(100, 170, 240, 0.15);
+    }
+}
+
+.animate-spin-fast {
+    animation: spin 0.3s linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===========================================================================
+   DESTRUCTIVE OUTLINE BUTTON — DANGER / REMOVE STYLE
+   =========================================================================== */
+
+.btn-outline-destructive {
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    background: transparent;
+    color: var(--red);
+    border: 1.5px solid var(--red);
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-outline-destructive:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(139, 37, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+    .btn-outline-destructive {
+        color: var(--red-light);
+        border-color: var(--red-light);
+    }
+
+    .btn-outline-destructive:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(208, 72, 40, 0.3);
+    }
+}
+
+/* ===========================================================================
+   ADD / REMOVE INTERACTIVE BUTTONS
+   =========================================================================== */
+
+.btn-add {
+    color: var(--foreground-muted);
+    font-style: italic;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.btn-add:hover {
+    color: var(--foreground);
+    background: var(--gold-faint);
+    border-color: var(--border) !important;
+}
+
+.btn-remove {
+    color: var(--foreground-muted);
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.btn-remove:hover {
+    color: #fff;
+    background: var(--red);
+    border-color: var(--red) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .btn-remove:hover {
+        color: #fff;
+        background: var(--red);
+        border-color: var(--red) !important;
+    }
+}
+
+/* ===========================================================================
+   DROPDOWN — SCROLL UNFURL STYLE
+   =========================================================================== */
+
+.dropdown-panel {
+    background: var(--background-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+}
+
+.dropdown-input {
+    font-family: var(--font-fell), "IM Fell English", serif;
+    background: color-mix(in srgb, var(--background) 90%, #fff);
+    border: 1px solid var(--border-light);
+    color: var(--foreground);
+}
+
+.dropdown-input:focus {
+    border-color: var(--gold);
+    outline: none;
+}
+
+.dropdown-input::placeholder {
+    color: var(--foreground-faint);
+    font-style: italic;
+}
+
+.dropdown-item {
+    color: var(--foreground);
+    transition: background 0.15s, color 0.15s;
+}
+
+.dropdown-item:hover {
+    background: var(--blue);
+    color: #fff;
+}
+
+/* ===========================================================================
+   DECORATIVE DIVIDER — FLOURISH / ORNAMENT
+   =========================================================================== */
+
+.divider-flourish {
+    text-align: center;
+    color: var(--border);
+    font-size: 1rem;
+    line-height: 1;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+    user-select: none;
+}
+
+/* ===========================================================================
+   "HERE BE DRAGONS" FOOTER
+   =========================================================================== */
+
+.map-footer {
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-style: italic;
+    color: var(--foreground-faint);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    user-select: none;
+}
+
+/* ===========================================================================
+   SCROLLBAR — PARCHMENT
+   =========================================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+}
+
+/* ===========================================================================
+   SELECTION HIGHLIGHT
+   =========================================================================== */
+
+::selection {
+    background: var(--gold-faint);
+    color: var(--blue);
 }

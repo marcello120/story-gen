@@ -88,7 +88,8 @@ export interface CallToAdventureBeat {
 export interface RefusalBeat {
     type: "refusal";
     title: "Refusal of the Call";
-    place: MotifValue;
+    place: MotifValue | null;
+    dissuade: Entity | null;
     hasToDoWith: MotifValue[];
     becauseOf: string | null;
 }
@@ -102,12 +103,15 @@ export interface MentorBeat {
     talismans: MotifValue[];
     learnsAbout: string | null;
     trial: MotifValue | null;
+    heroGainsMod: Modifier | null;
+    heroLosesMod: Modifier | null;
 }
 
 export interface ThresholdBeat {
     type: "threshold";
     title: "Crossing the First Threshold";
     hasToDoWith: MotifValue | null;
+    companionConflict: MotifValue | null;
     otherWorld: Place;
 }
 
@@ -136,6 +140,8 @@ export interface OrdealBeat {
     placeMods: Modifier[];
     hasToDoWith: MotifValue[];
     hingesOn: string[];
+    heroGainsMod: Modifier | null;
+    heroLosesMod: Modifier | null;
 }
 
 export interface RewardBeat {
@@ -152,7 +158,8 @@ export interface RoadBackBeat {
     title: "The Road Back to Original World";
     place: MotifValue;
     placeMods: Modifier[];
-    accompaniedBy: MotifValue;
+    accompaniedBy: MotifValue | null;
+    originalWorldMod: Modifier | null;
 }
 
 export interface ResurrectionBeat {
@@ -160,6 +167,17 @@ export interface ResurrectionBeat {
     title: "The Resurrection";
     contendWith: MotifValue;
     toAchieve: MotifValue;
+    heroGainsMod: Modifier | null;
+    heroLosesMod: Modifier | null;
+}
+
+export interface ElixirBeat {
+    type: "elixir";
+    title: "Return with the Elixir";
+    elixir: MotifValue;
+    returnsTo: MotifValue;
+    transformation: MotifValue;
+    resolution: MotifValue;
 }
 
 export type Beat =
@@ -173,7 +191,8 @@ export type Beat =
     | OrdealBeat
     | RewardBeat
     | RoadBackBeat
-    | ResurrectionBeat;
+    | ResurrectionBeat
+    | ElixirBeat;
 
 // ---------------------------------------------------------------------------
 // Story — the top-level structure

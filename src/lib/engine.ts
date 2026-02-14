@@ -2,6 +2,7 @@ import type {
     Beat,
     CallToAdventureBeat,
     CaveBeat,
+    ElixirBeat,
     Entity,
     Modifier,
     MotifValue,
@@ -33,6 +34,15 @@ import {
     randInt,
 } from "./helpers";
 import {CHARACTER_MODIFIERS, PLACE_MODIFIERS} from "./modifiers";
+
+// ---------------------------------------------------------------------------
+// Shared helpers
+// ---------------------------------------------------------------------------
+
+function randomCharMod(pools: PoolData): Modifier {
+    const def = pickOne(CHARACTER_MODIFIERS);
+    return {label: def.label, value: def.picker(pools)};
+}
 
 // ---------------------------------------------------------------------------
 // Per-beat generation functions
@@ -80,11 +90,12 @@ function generateRefusal(
     companion: Entity,
     villain: Entity,
 ): RefusalBeat {
-    const place = pick(pools, "Place");
+    const place: MotifValue | null = pick(pools, "Place");
+    const dissuade = maybe() ? makeEntity(pools, pickBeing(pools), CHARACTER_MODIFIERS, randInt(0, 3)) : null;
     const hasToDoWith: MotifValue[] = Array.from({length: randInt(1, 3)}, () => pickAnyMotif(pools));
     const becauseOf = maybe() ? pickModifierOf(hero, companion, villain) : null;
 
-    return {type: "refusal", title: "Refusal of the Call", place, hasToDoWith, becauseOf};
+    return {type: "refusal", title: "Refusal of the Call", place, dissuade, hasToDoWith, becauseOf};
 }
 
 function generateMentor(
@@ -101,12 +112,16 @@ function generateMentor(
         ?? pickAny(pools, "Event", "Condition", "Outcome", "Action", "Attribute").text;
     const trial = maybe() ? pickAny(pools, "Event", "Condition", "Outcome", "Action") : null;
 
-    return {type: "mentor", title: "Meeting the Mentor", mentor, place, supernaturalBeing, talismans, learnsAbout, trial};
+    const heroGainsMod = maybe() ? randomCharMod(pools) : null;
+    const heroLosesMod = maybe() ? randomCharMod(pools) : null;
+
+    return {type: "mentor", title: "Meeting the Mentor", mentor, place, supernaturalBeing, talismans, learnsAbout, trial, heroGainsMod, heroLosesMod};
 }
 
 function generateThreshold(pools: PoolData, otherWorld: Place): ThresholdBeat {
     const hasToDoWith = maybe() ? pickAnyMotif(pools) : null;
-    return {type: "threshold", title: "Crossing the First Threshold", hasToDoWith, otherWorld};
+    const companionConflict = maybe() ? pickAny(pools, "Object", "Outcome", "Event", "Action", "Condition", "Attribute") : null;
+    return {type: "threshold", title: "Crossing the First Threshold", hasToDoWith, companionConflict, otherWorld};
 }
 
 function generateTests(pools: PoolData): TestsBeat {
@@ -151,7 +166,10 @@ function generateOrdeal(
         () => pickModifierOf(villain, hero) ?? `**${talismans[0]?.text ?? "unknown talisman"}**`,
     );
 
-    return {type: "ordeal", title: "The Ordeal", place, placeMods, hasToDoWith, hingesOn};
+    const heroGainsMod = maybe() ? randomCharMod(pools) : null;
+    const heroLosesMod = maybe() ? randomCharMod(pools) : null;
+
+    return {type: "ordeal", title: "The Ordeal", place, placeMods, hasToDoWith, hingesOn, heroGainsMod, heroLosesMod};
 }
 
 function generateReward(
@@ -172,16 +190,32 @@ function generateReward(
 function generateRoadBack(pools: PoolData): RoadBackBeat {
     const place = pick(pools, "Place");
     const placeMods = applyModifiers(pools, PLACE_MODIFIERS, randInt(1, 3));
-    const accompaniedBy = maybe() ? pick(pools, "Object") : pickBeing(pools);
+    const accompaniedBy: MotifValue | null = maybe() ? pick(pools, "Object") : pickBeing(pools);
+    const originalWorldMod = maybe() ? (() => {
+        const def = pickOne(PLACE_MODIFIERS);
+        return {label: def.label, value: def.picker(pools)};
+    })() : null;
 
-    return {type: "road-back", title: "The Road Back to Original World", place, placeMods, accompaniedBy};
+    return {type: "road-back", title: "The Road Back to Original World", place, placeMods, accompaniedBy, originalWorldMod};
 }
 
 function generateResurrection(pools: PoolData): ResurrectionBeat {
     const contendWith = pickAny(pools, "Being", "Event", "Condition", "Outcome", "Action");
     const toAchieve = pickAny(pools, "Being", "Outcome", "Event", "Condition", "Action");
 
-    return {type: "resurrection", title: "The Resurrection", contendWith, toAchieve};
+    const heroGainsMod = maybe() ? randomCharMod(pools) : null;
+    const heroLosesMod = maybe() ? randomCharMod(pools) : null;
+
+    return {type: "resurrection", title: "The Resurrection", contendWith, toAchieve, heroGainsMod, heroLosesMod};
+}
+
+function generateElixir(pools: PoolData): ElixirBeat {
+    const elixir = pick(pools, "Object");
+    const returnsTo = pick(pools, "Place");
+    const transformation = maybe() ? pickBeing(pools) : pick(pools, "Condition");
+    const resolution = pickAny(pools, "Outcome", "Event", "Condition");
+
+    return {type: "elixir", title: "Return with the Elixir", elixir, returnsTo, transformation, resolution};
 }
 
 // ---------------------------------------------------------------------------
@@ -209,9 +243,10 @@ export function generateStory(pools: PoolData): Story {
     const beat9 = generateReward(pools, allies, talismans);
     const beat10 = generateRoadBack(pools);
     const beat11 = generateResurrection(pools);
+    const beat12 = generateElixir(pools);
 
     return {
-        beats: [beat1, beat2, beat3, beat4, beat5, beat6, beat7, beat8, beat9, beat10, beat11],
+        beats: [beat1, beat2, beat3, beat4, beat5, beat6, beat7, beat8, beat9, beat10, beat11, beat12],
         hero, villain, companion, originalWorld, otherWorld, allies, talismans,
     };
 }
@@ -282,6 +317,9 @@ export function regenerateBeat(story: Story, beatIndex: number, pools: PoolData)
                 break;
             case 10:
                 beats[10] = generateResurrection(pools);
+                break;
+            case 11:
+                beats[11] = generateElixir(pools);
                 break;
         }
     }

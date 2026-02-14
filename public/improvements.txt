@@ -1,0 +1,13 @@
+Add dissuade to refusal of the call, who can be Being with modifiers.
+Make "Loss of" removable and addable from Reward step
+Add the optional element "Hero gains modifier" to the Ordeal, Meeting the Mentor and Resurrection steps
+Add "Hero loses modifier" to the Ordeal, Meeting the Mentor and Resurrection steps
+Add the final step: Return with the Elixir after Resurrection. This contains the elements:
+Make "Happens at Place" removable in Refusal of the Call
+"Has something to do with: " should be addable in Crossing the First Threshold
+Add the optional element "Original World gained modifier" to The Road Back to Original World, this is a place modifier that can be added or removed.
+Make Accompanied by removable
+Add "Companion conflict regarding [Object, Outcome, Event, Action, Condition, Attribute] in Crossing the First Threshold step
+
+
+

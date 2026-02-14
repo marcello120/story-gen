@@ -27,8 +27,8 @@ export default function ModifierList({mods, pools, onModSwap, onModRemove, onMod
             {mods.length > 0 && (
                 <ul className={ml}>
                     {mods.map((mod, i) => (
-                        <li key={i} className="text-sm text-gray-700 dark:text-gray-300 flex items-baseline gap-1">
-                            <span className="text-gray-500 dark:text-gray-400">{mod.label}:</span>{" "}
+                        <li key={i} className="text-sm flex items-baseline gap-1" style={{color: "var(--foreground)"}}>
+                            <span className="label-text">{mod.label}:</span>{" "}
                             <Motif value={mod.value} pools={pools} onSwap={(v) => onModSwap(i, v)} />
                             <RemoveButton onClick={() => onModRemove(i)} title="Remove this modifier" />
                         </li>

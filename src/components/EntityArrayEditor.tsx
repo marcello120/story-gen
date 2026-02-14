@@ -1,11 +1,14 @@
 "use client";
 
 import type {Entity, Modifier, ModifierDef, MotifValue, PoolData} from "@/lib/types";
+import type {ReactNode} from "react";
 import EntityDisplay from "./EntityDisplay";
+import AddButton from "./AddButton";
 
 interface EntityArrayEditorProps {
     groupLabel: string;
     entities: Entity[];
+    icon?: ReactNode;
     pools: PoolData;
     onNameSwap: (entityIndex: number, newValue: MotifValue) => void;
     onModSwap: (entityIndex: number, modIndex: number, newValue: MotifValue) => void;
@@ -21,6 +24,7 @@ interface EntityArrayEditorProps {
 export default function EntityArrayEditor({
                                               groupLabel,
                                               entities,
+                                              icon,
                                               pools,
                                               onNameSwap,
                                               onModSwap,
@@ -40,7 +44,7 @@ export default function EntityArrayEditor({
                 lowerLabel.slice(0, -1);
     return (
         <div className="mt-2">
-            <span className="text-gray-600 dark:text-gray-400 font-medium">{groupLabel}</span>
+            <span className="text-xl label-text font-medium">{icon}{icon && " "}{groupLabel}</span>
             {entities.map((entity, ei) => (
                 <div key={ei} className="ml-4">
                     <EntityDisplay
@@ -58,14 +62,7 @@ export default function EntityArrayEditor({
                     />
                 </div>
             ))}
-            <button
-                type="button"
-                disabled={atMax}
-                onClick={onEntityAdd}
-                className="ml-4 mt-1 text-s text-gray-500 dark:text-gray-400 hover:text-amber-700 dark:hover:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30 rounded px-1.5 py-0.5 cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-                + Add {singularLabel}
-            </button>
+            <AddButton label={singularLabel} onClick={onEntityAdd} disabled={atMax} className="ml-4 mt-1"/>
         </div>
     );
 }

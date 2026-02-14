@@ -1,17 +1,27 @@
+import {useState} from "react";
+
 interface RerollButtonProps {
     onClick: () => void;
     title?: string;
 }
 
 export default function RerollButton({onClick, title = "Swap for a new motif"}: RerollButtonProps) {
+    const [spinning, setSpinning] = useState(false);
+
+    const handleClick = () => {
+        setSpinning(true);
+        onClick();
+        setTimeout(() => setSpinning(false), 900);
+    };
+
     return (
         <button
             type="button"
-            onClick={onClick}
-            className="text-xl text-gray-500 dark:text-gray-400 hover:text-amber-700 dark:hover:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30 rounded px-3 cursor-pointer transition-colors border border-gray-300/20 dark:border-gray-600/20"
+            onClick={handleClick}
+            className="text-lg btn-outline rounded px-3 cursor-pointer shadow-md"
             title={title}
         >
-            ↻
+            <span className={`inline-block ${spinning ? "animate-spin duration-1000" : ""}`}>↻</span>
         </button>
     );
 }

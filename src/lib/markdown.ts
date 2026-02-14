@@ -50,7 +50,8 @@ function beatToMarkdown(beat: Beat): string {
             break;
 
         case "refusal":
-            lines.push(motifLine("Happens at Place", beat.place));
+            if (beat.place) lines.push(motifLine("Happens at Place", beat.place));
+            if (beat.dissuade) lines.push(entity("Dissuade", beat.dissuade));
             for (const m of beat.hasToDoWith) lines.push(motifLine("Has something to do with", m));
             if (beat.becauseOf) lines.push(`- Because of: ${beat.becauseOf}`);
             break;
@@ -62,10 +63,13 @@ function beatToMarkdown(beat: Beat): string {
             for (const t of beat.talismans) lines.push(motifLine("Talisman gained", t));
             if (beat.learnsAbout) lines.push(`- Learns about: ${beat.learnsAbout}`);
             if (beat.trial) lines.push(motifLine("Trial", beat.trial));
+            if (beat.heroGainsMod) lines.push(`- Hero gains modifier: ${beat.heroGainsMod.label}: ${bold(beat.heroGainsMod.value)}`);
+            if (beat.heroLosesMod) lines.push(`- Hero loses modifier: ${beat.heroLosesMod.label}: ${bold(beat.heroLosesMod.value)}`);
             break;
 
         case "threshold":
             if (beat.hasToDoWith) lines.push(motifLine("Has something to do with", beat.hasToDoWith));
+            if (beat.companionConflict) lines.push(motifLine("Companion conflict regarding", beat.companionConflict));
             lines.push(place("Other World", beat.otherWorld, "Other World"));
             break;
 
@@ -87,7 +91,7 @@ function beatToMarkdown(beat: Beat): string {
             lines.push(motifLine("Place", beat.place));
             for (const r of beat.toRescue) lines.push(motifLine("To Rescue", r));
             if (beat.toGetTalisman) lines.push(motifLine("To Get Object", beat.toGetTalisman));
-            if (beat.cursedBane) lines.push(motifLine("Cursed (Bane)", beat.cursedBane));
+            if (beat.cursedBane) lines.push(motifLine("Cursed with (Bane)", beat.cursedBane));
             if (beat.toUndergo) lines.push(motifLine("To Undergo", beat.toUndergo));
             break;
 
@@ -96,6 +100,8 @@ function beatToMarkdown(beat: Beat): string {
             if (beat.placeMods.length > 0) lines.push(mods(beat.placeMods, "    "));
             for (const m of beat.hasToDoWith) lines.push(motifLine("Has something to do with", m));
             for (const h of beat.hingesOn) lines.push(`- Hinges on: ${h}`);
+            if (beat.heroGainsMod) lines.push(`- Hero gains modifier: ${beat.heroGainsMod.label}: ${bold(beat.heroGainsMod.value)}`);
+            if (beat.heroLosesMod) lines.push(`- Hero loses modifier: ${beat.heroLosesMod.label}: ${bold(beat.heroLosesMod.value)}`);
             break;
 
         case "reward":
@@ -108,12 +114,22 @@ function beatToMarkdown(beat: Beat): string {
         case "road-back":
             lines.push(motifLine("Goes through Place", beat.place));
             if (beat.placeMods.length > 0) lines.push(mods(beat.placeMods, "    "));
-            lines.push(motifLine("Accompanied by", beat.accompaniedBy));
+            if (beat.accompaniedBy) lines.push(motifLine("Accompanied by", beat.accompaniedBy));
+            if (beat.originalWorldMod) lines.push(`- Original World gained modifier: ${beat.originalWorldMod.label}: ${bold(beat.originalWorldMod.value)}`);
             break;
 
         case "resurrection":
             lines.push(motifLine("Has to contend with", beat.contendWith));
             lines.push(motifLine("To achieve", beat.toAchieve));
+            if (beat.heroGainsMod) lines.push(`- Hero gains modifier: ${beat.heroGainsMod.label}: ${bold(beat.heroGainsMod.value)}`);
+            if (beat.heroLosesMod) lines.push(`- Hero loses modifier: ${beat.heroLosesMod.label}: ${bold(beat.heroLosesMod.value)}`);
+            break;
+
+        case "elixir":
+            lines.push(motifLine("Elixir", beat.elixir));
+            lines.push(motifLine("Returns to", beat.returnsTo));
+            lines.push(motifLine("Transformation", beat.transformation));
+            lines.push(motifLine("Resolution", beat.resolution));
             break;
     }
 

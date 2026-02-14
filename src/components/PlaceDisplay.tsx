@@ -1,6 +1,7 @@
 "use client";
 
 import type {Place, Modifier, ModifierDef, MotifValue, PoolData} from "@/lib/types";
+import type {ReactNode} from "react";
 import Motif from "./Motif";
 import ModifierList from "./ModifierList";
 
@@ -8,6 +9,7 @@ interface PlaceDisplayProps {
     label: string;
     place: Place;
     suffix?: string;
+    icon?: ReactNode;
     pools: PoolData;
     onNameSwap: (newValue: MotifValue) => void;
     onOriginSwap: (newValue: MotifValue) => void;
@@ -18,17 +20,17 @@ interface PlaceDisplayProps {
     maxMods: number;
 }
 
-export default function PlaceDisplay({label, place, suffix, pools, onNameSwap, onOriginSwap, onModSwap, onModRemove, onModAdd, modDefs, maxMods}: PlaceDisplayProps) {
+export default function PlaceDisplay({label, place, suffix, icon, pools, onNameSwap, onOriginSwap, onModSwap, onModRemove, onModAdd, modDefs, maxMods}: PlaceDisplayProps) {
     return (
         <div className="mb-1">
             <div>
-                <span className="text-gray-600 dark:text-gray-400">{label}:</span>{" "}
+                <span className="text-xl label-text">{icon}{icon && " "}{label}:</span>{" "}
                 <Motif value={place.name} pools={pools} onSwap={onNameSwap} />
                 {" "}
-                <span className="text-gray-500 dark:text-gray-400">(</span>
+                <span className="label-text">(</span>
                 <Motif value={place.origin} pools={pools} onSwap={onOriginSwap} />
-                <span className="text-gray-500 dark:text-gray-400">)</span>
-                {suffix && <span className="text-gray-500 dark:text-gray-400"> — {suffix}</span>}
+                <span className="label-text">)</span>
+                {suffix && <span className="label-text"> — {suffix}</span>}
             </div>
             <ModifierList
                 mods={place.mods}

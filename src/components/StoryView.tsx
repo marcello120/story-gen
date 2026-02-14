@@ -12,17 +12,24 @@ interface StoryViewProps {
 
 export default function StoryView({story, pools, onStoryUpdate}: StoryViewProps) {
     return (
-        <div className="space-y-4">
+        <div>
             {story.beats.map((beat, i) => (
-                <BeatCard
-                    key={`${beat.type}-${i}`}
-                    beat={beat}
-                    beatIndex={i}
-                    story={story}
-                    pools={pools}
-                    onStoryUpdate={onStoryUpdate}
-                    onReroll={() => onStoryUpdate(regenerateBeat(story, i, pools))}
-                />
+                <div key={`${beat.type}-${i}`}>
+                    {/* Dotted trail connector between beats */}
+                    {i > 0 && (
+                        <div className="trail-connector" aria-hidden="true">
+                            <div className="trail-line"></div>
+                        </div>
+                    )}
+                    <BeatCard
+                        beat={beat}
+                        beatIndex={i}
+                        story={story}
+                        pools={pools}
+                        onStoryUpdate={onStoryUpdate}
+                        onReroll={() => onStoryUpdate(regenerateBeat(story, i, pools))}
+                    />
+                </div>
             ))}
         </div>
     );

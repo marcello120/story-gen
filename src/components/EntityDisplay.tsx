@@ -1,6 +1,7 @@
 "use client";
 
 import type {Entity, Modifier, ModifierDef, MotifValue, PoolData} from "@/lib/types";
+import type {ReactNode} from "react";
 import Motif from "./Motif";
 import RemoveButton from "./RemoveButton";
 import ModifierList from "./ModifierList";
@@ -9,6 +10,7 @@ interface EntityDisplayProps {
     label: string;
     entity: Entity;
     suffix?: string;
+    icon?: ReactNode;
     pools: PoolData;
     onNameSwap: (newValue: MotifValue) => void;
     onModSwap: (modIndex: number, newValue: MotifValue) => void;
@@ -20,14 +22,14 @@ interface EntityDisplayProps {
     removeTitle?: string;
 }
 
-export default function EntityDisplay({label, entity, suffix, pools, onNameSwap, onModSwap, onModRemove, onModAdd, modDefs, maxMods, onRemove, removeTitle}: EntityDisplayProps) {
+export default function EntityDisplay({label, entity, suffix, icon, pools, onNameSwap, onModSwap, onModRemove, onModAdd, modDefs, maxMods, onRemove, removeTitle}: EntityDisplayProps) {
     return (
         <div className="mb-1">
             <div className="flex items-baseline gap-1">
                 <div>
-                    {label && <span className="text-gray-600 dark:text-gray-400">{label}:</span>}{" "}
+                    {label && <span className="text-xl label-text">{icon}{icon && " "}{label}:</span>}{" "}
                     <Motif value={entity.name} pools={pools} onSwap={onNameSwap} />
-                    {suffix && <span className="text-gray-500 dark:text-gray-400"> — {suffix}</span>}
+                    {suffix && <span className="label-text"> — {suffix}</span>}
                 </div>
                 {onRemove && <RemoveButton onClick={onRemove} title={removeTitle} />}
             </div>
