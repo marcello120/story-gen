@@ -6,20 +6,44 @@ import {loadPools} from "@/lib/pools";
 import {generateStory} from "@/lib/engine";
 import {storyToMarkdown} from "@/lib/markdown";
 import {syncStory} from "@/lib/sync";
+import {useActGeneration} from "@/lib/useActGeneration";
 import StoryView from "@/components/StoryView";
-import {FileBraces, FilePen, FileUp, RefreshCcw} from "lucide-react";
+import StorySidebar from "@/components/StorySidebar";
+import ChronicleContent from "@/components/ChronicleContent";
+import {FileBraces, FilePen, FileUp, RefreshCcw, Map, BookOpenText} from "lucide-react";
+
+const STORAGE_KEY_STORY = "mythslop-story";
 
 export default function Home() {
     const [pools, setPools] = useState<PoolData | null>(null);
     const [story, setStory] = useState<Story | null>(null);
     const [loading, setLoading] = useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [mobileTab, setMobileTab] = useState<"outline" | "chronicle">("outline");
+    const {acts, nextAvailableAct, isGenerating, generateAct, reset: resetActs} = useActGeneration();
 
     useEffect(() => {
         loadPools().then((data) => {
             setPools(data);
             setLoading(false);
         });
+        // Restore story from localStorage
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY_STORY);
+            if (saved) setStory(JSON.parse(saved));
+        } catch {
+            // ignore corrupt data
+        }
     }, []);
+
+    // Persist story to localStorage whenever it changes
+    useEffect(() => {
+        if (story) {
+            localStorage.setItem(STORAGE_KEY_STORY, JSON.stringify(story));
+        } else {
+            localStorage.removeItem(STORAGE_KEY_STORY);
+        }
+    }, [story]);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -30,7 +54,9 @@ export default function Home() {
     const generate = useCallback(() => {
         if (!pools) return;
         setStory(generateStory(pools));
-    }, [pools]);
+        resetActs();
+        setSidebarOpen(false);
+    }, [pools, resetActs]);
 
     const downloadFile = useCallback((content: string, filename: string, type: string) => {
         const blob = new Blob([content], {type});
@@ -60,13 +86,14 @@ export default function Home() {
             try {
                 const data = JSON.parse(reader.result as string) as Story;
                 setStory(data);
+                resetActs();
             } catch {
                 alert("Invalid story JSON file.");
             }
         };
         reader.readAsText(file);
         e.target.value = "";
-    }, []);
+    }, [resetActs]);
 
     if (loading) {
         return (
@@ -77,7 +104,7 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen  background-style">
+        <div className={`min-h-screen background-style page-layout ${sidebarOpen ? "page-layout--sidebar-open" : ""}`}>
             <div className="max-w-3xl mx-auto px-6 py-10 map-container">
                 {/* Corner flourishes */}
                 <span className="map-corner map-corner-tl" aria-hidden="true">&#10087;</span>
@@ -146,13 +173,58 @@ export default function Home() {
                     </div>
                 </header>
 
-                {story && pools && (
-                    <StoryView story={story} pools={pools} onStoryUpdate={handleStoryUpdate}/>
+                {/*<button onClick={()=>{*/}
+                {/*    const utterance = new SpeechSynthesisUtterance("On a drifting speck of land that answered to no king, the Man With Inscription On Forehead awoke each dawn beneath an arc of colours. The island had no anchor; it wandered upon the gray sea like a secret thought. They called it the Wandering Isle, for its shores changed kin with the tides, and its paths led sometimes to distant shoals and sometimes to the belly of mists. The rainbows that crowned the isle were not the work of sun and storm alone but of a thousand small wings: butterflies, each the pale sprite of a lover’s soul, flung into iridescent flight. When two hearts were joined and then rent by fate, their spirits took wing and painted heaven in bands of blue and gold. Thus the isle remembered love, and the memory was bright against the sky.");*/}
+                {/*    window.speechSynthesis.speak(utterance);*/}
+                {/*}} >*/}
+                {/*    TALK*/}
+                {/*</button>*/}
+
+                {/* Mobile tab switcher — hidden on desktop */}
+                {story && (
+                    <div className="mobile-tabs">
+                        <button
+                            type="button"
+                            onClick={() => setMobileTab("outline")}
+                            className={`mobile-tab ${mobileTab === "outline" ? "mobile-tab--active" : ""}`}
+                        >
+                            <Map className="w-4 h-4"/>
+                            Outline
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setMobileTab("chronicle")}
+                            className={`mobile-tab ${mobileTab === "chronicle" ? "mobile-tab--active" : ""}`}
+                        >
+                            <BookOpenText className="w-4 h-4"/>
+                            Chronicle
+                        </button>
+                    </div>
                 )}
 
-                {!story && (
-                    <div className="text-center py-20 label-text">
-                        Click the button above to generate a story
+                {/* Outline view — always visible on desktop, tab-controlled on mobile */}
+                <div className={`mobile-tab-content ${mobileTab !== "outline" ? "mobile-tab-content--hidden" : ""}`}>
+                    {story && pools && (
+                        <StoryView story={story} pools={pools} onStoryUpdate={handleStoryUpdate}/>
+                    )}
+
+                    {!story && (
+                        <div className="text-center py-20 label-text">
+                            Click the button above to generate a story
+                        </div>
+                    )}
+                </div>
+
+                {/* Chronicle view — only visible on mobile when tab is active */}
+                {story && (
+                    <div className={`mobile-chronicle ${mobileTab !== "chronicle" ? "mobile-chronicle--hidden" : ""}`}>
+                        <ChronicleContent
+                            story={story}
+                            acts={acts}
+                            nextAvailableAct={nextAvailableAct}
+                            isGenerating={isGenerating}
+                            onGenerate={generateAct}
+                        />
                     </div>
                 )}
 
@@ -166,6 +238,17 @@ export default function Home() {
                     </p>
                 </footer>
             </div>
+
+            <StorySidebar
+                open={sidebarOpen}
+                onOpen={() => setSidebarOpen(true)}
+                onClose={() => setSidebarOpen(false)}
+                story={story}
+                acts={acts}
+                nextAvailableAct={nextAvailableAct}
+                isGenerating={isGenerating}
+                onGenerate={generateAct}
+            />
         </div>
     );
 }

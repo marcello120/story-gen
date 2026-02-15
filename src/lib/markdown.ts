@@ -28,7 +28,7 @@ function motifLine(label: string, m: MotifValue): string {
     return `- ${label}: ${bold(m)}`;
 }
 
-function beatToMarkdown(beat: Beat): string {
+export function beatToMarkdown(beat: Beat): string {
     const lines: string[] = [];
     lines.push(`## ${beat.title}`);
     lines.push("");

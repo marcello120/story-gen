@@ -116,20 +116,6 @@ body {
     background-attachment: fixed;
 }
 
-/* Vignette — burnt/darkened edges like an aged map */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    background: radial-gradient(
-            ellipse at center,
-            transparent 50%,
-            color-mix(in srgb, var(--blue) 60%, #3e2010) 100%
-    );
-    opacity: 0.4;
-}
 
 /* ===========================================================================
    MAP CONTAINER — ORNATE MULTI-RING BORDER WITH CORNER FLOURISHES
@@ -785,4 +771,313 @@ body::after {
 ::selection {
     background: var(--gold-faint);
     color: var(--blue);
+}
+
+/* ===========================================================================
+   PAGE LAYOUT — SIDEBAR SUPPORT
+   =========================================================================== */
+
+.page-layout {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding-right: 44px;
+    transition: padding-right 0.3s ease;
+}
+
+.page-layout--sidebar-open {
+    padding-right: 420px;
+}
+
+/* ===========================================================================
+   STORY SIDEBAR — CHRONICLE PANEL
+   =========================================================================== */
+
+.sidebar-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 420px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+
+    background: repeating-conic-gradient(
+            color-mix(in srgb, var(--background-card) 96%, #a08050) 0% 25%,
+            transparent 0% 50%
+    ),
+    linear-gradient(
+            170deg,
+            color-mix(in srgb, var(--background-card) 92%, #fff) 0%,
+            var(--background-card) 40%,
+            color-mix(in srgb, var(--background-card) 92%, #887040) 100%
+    );
+    background-size: 3px 3px, 100% 100%;
+
+    border-left: 3px solid var(--border);
+    box-shadow: -4px 0 20px var(--shadow-color),
+    inset 2px 0 8px rgba(80, 50, 20, 0.1);
+
+    padding: 0.75rem;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--blue);
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    font-family: var(--font-cinzel-deco), "Cinzel Decorative", serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--blue);
+}
+
+.sidebar-content {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.sidebar-act {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-act-title {
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    font-variant: small-caps;
+}
+
+.sidebar-prose {
+    font-family: var(--font-fell), "IM Fell English", serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--foreground);
+    white-space: pre-wrap;
+    margin-bottom: 0.75rem;
+    margin-right: 2px;
+}
+
+.sidebar-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--gold);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.sidebar-generate-btn {
+    display: block;
+    width: 95%;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.sidebar-locked {
+    color: var(--foreground-faint);
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+.sidebar-loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold);
+    font-style: italic;
+}
+
+.sidebar-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--red);
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    border: 1px solid var(--red);
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--red) 5%, transparent);
+    margin-bottom: 0.5rem;
+}
+
+/* ===========================================================================
+   SIDEBAR COLLAPSED — THIN VERTICAL BAR
+   =========================================================================== */
+
+.sidebar-collapsed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 100vh;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+    gap: 0.75rem;
+    cursor: pointer;
+
+    background: repeating-conic-gradient(
+            color-mix(in srgb, var(--background-card) 96%, #a08050) 0% 25%,
+            transparent 0% 50%
+    ),
+    linear-gradient(
+            170deg,
+            color-mix(in srgb, var(--background-card) 92%, #fff) 0%,
+            var(--background-card) 40%,
+            color-mix(in srgb, var(--background-card) 92%, #887040) 100%
+    );
+    background-size: 3px 3px, 100% 100%;
+
+    border-left: 2px solid var(--border);
+    box-shadow: -2px 0 8px var(--shadow-color);
+    transition: width 0.2s ease, border-color 0.2s ease;
+}
+
+.animate-text-glow {
+    animation: text-glow 2s ease-in-out infinite;
+}
+
+@keyframes text-glow {
+    0%, 100% {
+        text-shadow: 0 0 4px var(--gold-faint), 0 0 8px transparent;
+    }
+    50% {
+        text-shadow: 0 0 8px var(--gold), 0 0 16px var(--gold-light), 0 0 24px var(--gold-faint);
+    }
+}
+
+.sidebar-collapsed-label {
+    writing-mode: vertical-rl;
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    user-select: none;
+    font-variant: small-caps;
+}
+
+.sidebar-collapsed:hover {
+    border-left-color: var(--gold);
+}
+
+.sidebar-collapsed-label {
+    writing-mode: vertical-rl;
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    user-select: none;
+    font-variant: small-caps;
+}
+
+.sidebar-collapsed-icon {
+    color: var(--blue);
+    opacity: 0.7;
+}
+
+.sidebar-collapsed:hover .sidebar-collapsed-icon {
+    opacity: 1;
+    color: var(--gold);
+}
+
+.sidebar-collapsed:hover .sidebar-collapsed-label {
+    color: var(--gold);
+}
+
+/* ===========================================================================
+   MOBILE TABS — OUTLINE / CHRONICLE SWITCHER
+   =========================================================================== */
+
+.mobile-tabs {
+    display: none;
+}
+
+.mobile-chronicle {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    /* Hide sidebar entirely on mobile */
+    .sidebar-panel,
+    .sidebar-collapsed {
+        display: none !important;
+    }
+
+    .page-layout,
+    .page-layout--sidebar-open {
+        padding-right: 0;
+    }
+
+    /* Show mobile tab switcher */
+    .mobile-tabs {
+        display: flex;
+        gap: 0;
+        margin-bottom: 1.5rem;
+        border: 1.5px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .mobile-tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.6rem 1rem;
+        font-family: var(--font-cinzel), "Cinzel", serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--foreground-muted);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .mobile-tab + .mobile-tab {
+        border-left: 1.5px solid var(--border);
+    }
+
+    .mobile-tab--active {
+        background: var(--blue);
+        color: #fff;
+    }
+
+    .mobile-tab-content--hidden {
+        display: none;
+    }
+
+    .mobile-chronicle {
+        display: block;
+    }
+
+    .mobile-chronicle--hidden {
+        display: none;
+    }
 }
