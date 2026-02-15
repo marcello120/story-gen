@@ -763,9 +763,9 @@ function ElixirContent({beat, pools, update}: {
             <MotifLine label="Elixir" value={beat.elixir} pools={pools}
                        icon={<FlaskConical className={ICON_CLASS}/>}
                        onSwap={(v) => update((b) => ({...b, elixir: v} as Beat))}/>
-            <MotifLine label="Returns to" value={beat.returnsTo} pools={pools}
-                       icon={<MapPin className={ICON_CLASS}/>}
-                       onSwap={(v) => update((b) => ({...b, returnsTo: v} as Beat))}/>
+            {/*<MotifLine label="Returns to" value={beat.returnsTo} pools={pools}*/}
+            {/*           icon={<MapPin className={ICON_CLASS}/>}*/}
+            {/*           onSwap={(v) => update((b) => ({...b, returnsTo: v} as Beat))}/>*/}
             <MotifLine label="Transformation" value={beat.transformation} pools={pools}
                        icon={<Sparkles className={ICON_CLASS}/>}
                        onSwap={(v) => update((b) => ({...b, transformation: v} as Beat))}/>

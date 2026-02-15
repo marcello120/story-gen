@@ -10,7 +10,8 @@ import {useActGeneration} from "@/lib/useActGeneration";
 import StoryView from "@/components/StoryView";
 import StorySidebar from "@/components/StorySidebar";
 import ChronicleContent from "@/components/ChronicleContent";
-import {FileBraces, FilePen, FileUp, RefreshCcw, Map, BookOpenText} from "lucide-react";
+import {exportAsImage, exportAsPdf} from "@/lib/exportStory";
+import {Download, FileBraces, FilePen, FileUp, FileText, FileImage, RefreshCcw, Map, BookOpenText} from "lucide-react";
 
 const STORAGE_KEY_STORY = "mythslop-story";
 
@@ -20,6 +21,7 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [mobileTab, setMobileTab] = useState<"outline" | "chronicle">("outline");
+    const [downloadOpen, setDownloadOpen] = useState(false);
     const {acts, nextAvailableAct, isGenerating, generateAct, reset: resetActs} = useActGeneration();
 
     useEffect(() => {
@@ -46,6 +48,18 @@ export default function Home() {
     }, [story]);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const downloadRef = useRef<HTMLDivElement>(null);
+
+    // Close download dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (downloadRef.current && !downloadRef.current.contains(e.target as Node)) {
+                setDownloadOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     const handleStoryUpdate = useCallback((newStory: Story) => {
         setStory((prev) => prev ? syncStory(prev, newStory) : newStory);
@@ -77,6 +91,16 @@ export default function Home() {
         if (!story) return;
         downloadFile(storyToMarkdown(story), "story.md", "text/markdown");
     }, [story, downloadFile]);
+
+    const exportPdf = useCallback(() => {
+        if (!story) return;
+        exportAsPdf(story, acts);
+    }, [story, acts]);
+
+    const exportImage = useCallback(() => {
+        if (!story) return;
+        exportAsImage(story, acts);
+    }, [story, acts]);
 
     const importStory = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -139,22 +163,47 @@ export default function Home() {
                             {story ? <RefreshCcw /> : "Generate"}
                         </button>
                         {story && (
-                            <>
+                            <div className="relative" ref={downloadRef}>
                                 <button
                                     type="button"
-                                    onClick={exportJson}
+                                    onClick={() => setDownloadOpen(!downloadOpen)}
                                     className="px-4 py-2.5 rounded-lg btn-outline cursor-pointer text-sm"
                                 >
-                                    <FileBraces />
+                                    <Download />
                                 </button>
-                                <button
-                                    type="button"
-                                    onClick={exportMarkdown}
-                                    className="px-4 py-2.5 rounded-lg btn-outline cursor-pointer text-sm"
-                                >
-                                    <FilePen />
-                                </button>
-                            </>
+                                {downloadOpen && (
+                                    <div className="absolute top-full left-0 mt-1 bg-[var(--background-card)] border border-[var(--border)] rounded-lg shadow-lg z-10 min-w-[140px]">
+                                        <button
+                                            type="button"
+                                            onClick={() => { exportJson(); setDownloadOpen(false); }}
+                                            className="w-full px-4 py-2 text-left text-sm hover:bg-[var(--gold-faint)] flex items-center gap-2 rounded-t-lg cursor-pointer"
+                                        >
+                                            <FileBraces className="w-4 h-4" /> JSON
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => { exportMarkdown(); setDownloadOpen(false); }}
+                                            className="w-full px-4 py-2 text-left text-sm hover:bg-[var(--gold-faint)] flex items-center gap-2 cursor-pointer"
+                                        >
+                                            <FilePen className="w-4 h-4" /> Markdown
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => { exportPdf(); setDownloadOpen(false); }}
+                                            className="w-full px-4 py-2 text-left text-sm hover:bg-[var(--gold-faint)] flex items-center gap-2 cursor-pointer"
+                                        >
+                                            <FileText className="w-4 h-4" /> PDF
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => { exportImage(); setDownloadOpen(false); }}
+                                            className="w-full px-4 py-2 text-left text-sm hover:bg-[var(--gold-faint)] flex items-center gap-2 rounded-b-lg cursor-pointer"
+                                        >
+                                            <FileImage className="w-4 h-4" /> Image
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         )}
                         <button
                             type="button"
@@ -173,12 +222,6 @@ export default function Home() {
                     </div>
                 </header>
 
-                {/*<button onClick={()=>{*/}
-                {/*    const utterance = new SpeechSynthesisUtterance("On a drifting speck of land that answered to no king, the Man With Inscription On Forehead awoke each dawn beneath an arc of colours. The island had no anchor; it wandered upon the gray sea like a secret thought. They called it the Wandering Isle, for its shores changed kin with the tides, and its paths led sometimes to distant shoals and sometimes to the belly of mists. The rainbows that crowned the isle were not the work of sun and storm alone but of a thousand small wings: butterflies, each the pale sprite of a lover’s soul, flung into iridescent flight. When two hearts were joined and then rent by fate, their spirits took wing and painted heaven in bands of blue and gold. Thus the isle remembered love, and the memory was bright against the sky.");*/}
-                {/*    window.speechSynthesis.speak(utterance);*/}
-                {/*}} >*/}
-                {/*    TALK*/}
-                {/*</button>*/}
 
                 {/* Mobile tab switcher — hidden on desktop */}
                 {story && (

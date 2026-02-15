@@ -39,7 +39,7 @@ export default function StorySidebar({
     if (!open) {
         return (
             <aside className="sidebar-collapsed" onClick={onOpen} title="Open Chronicle">
-                <BookOpenText className="w-6 h-6 sidebar-collapsed-icon animate-bounce"/>
+                <BookOpenText className="w-8 h-8 sidebar-collapsed-icon animate-bounce"/>
                 <span className="sidebar-collapsed-label animate-text-glow">Chronicle</span>
             </aside>
         );
