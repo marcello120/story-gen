@@ -1,0 +1,358 @@
+TMI Motif Semantic Category Report
+================================================================================
+
+Categories assigned via rule-based pattern matching on motif names,
+with a TF-IDF + SGD classifier extending to unmatched motifs.
+Rule-matched: 22,167 / 46,230 (47.9%)
+Classifier-predicted: 24,063 (52.1%)
+Classifier 5-fold CV accuracy: 0.876
+
+
+────────────────────────────────────────────────────────────────────────────────
+  BEING  —  24,172 motifs (52.3%)
+  Characters, creatures, deities, supernatural entities, animals-as-characters
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (3,387), Wisdom and Folly (2,598), Myths (2,498), Deceptions (2,463), Animals (2,013)
+  Sample motifs:
+    • Creator
+    • Sun-God As Creator
+    • Grandfather As Creator
+    • Stone-Woman As Creator
+    • Brahma As Creator
+    • Identity Of Creator
+    • Three Creators
+    • First Human Pair As Creators
+    • Multiple Creators
+    • Creative Mother Source Of Everything
+    • Creator Has Two Sons
+    • Creator's Descendants
+    • Nature Of The Creator
+    • Invisibility Of Creator Learned From The Impossibility Of Staring At The Sun, His Servant
+    • Invisible Creator
+
+────────────────────────────────────────────────────────────────────────────────
+  ACTION  —  4,033 motifs (8.7%)
+  Tasks, deceptions, tests, transformations, pursuits, escapes
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Tests (1,567), Magic (1,206), Deceptions (782), Captives and Fugitives (145), Myths (57)
+  Sample motifs:
+    • Theft Of Ambrosia
+    • Theft Of Magic Mead By Odin
+    • Goddess Of Hunting
+    • God Of Hunting
+    • God Of Fishing
+    • Sun From Transformation
+    • Theft Of Sun
+    • Pursuit Of Sun By Moon
+    • Contest Between Sun And Moon
+    • Theft Of Moon
+    • Milky Way A Hunting Party
+    • Earth Made By Transformation Of Broken Ground
+    • Meander-Pursuit
+    • River Bursts From Well In Pursuit
+    • River From Transformation
+
+────────────────────────────────────────────────────────────────────────────────
+  PLACE  —  3,792 motifs (8.2%)
+  Locations, realms, geographic features, cosmic settings
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (1,106), Myths (761), Magic (385), Wisdom and Folly (210), Tests (178)
+  Sample motifs:
+    • Gods Make Earth To Have Place To Rest Their Feet
+    • Woman Who Fell From The Sky
+    • Old Man From Sky As Creator
+    • Creator Emerges From Lake
+    • Creator's Companions: Sun And Moon
+    • Angel Of Sea Rebels At World's Creation; Put To Death By God
+    • Satan Attempts To Create Another World
+    • Creator As Ancestor Of Heaven And Earth
+    • Creator Goes To Make Afterworld
+    • Creator Goes To Sky
+    • Banished Devil Appears On Earth Only On Day Of Dark Moon
+    • Demon (Opposed To God) Allowed To Earth Four Times A Year (But Must Let People Know Who He Is And Not Deceive Them)
+    • Revolting Devil Banished To Hell
+    • Satan's Fall From Heaven
+    • God Of The Living And The Dead In The Otherworld
+
+────────────────────────────────────────────────────────────────────────────────
+  EVENT  —  3,682 motifs (8.0%)
+  Narrative happenings: births, deaths, marriages, battles, prophecies
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Magic (364), Death (350), Ordaining the Future (329), Sex (315), Marvels (293)
+  Sample motifs:
+    • Sun And Moon (Man And Wife) As Creators
+    • Conflict Of Good And Evil Creators
+    • Material Of Which Angels Are Created (Fire, Water And Snow)
+    • Creator's Death
+    • Imperfect God, Subject To Death And Rebirth
+    • Conflict Between God's Justice And Mercy
+    • The Making Of Gods
+    • Gods And The Demons Quarrel Over Supremacy
+    • Birth Of Gods
+    • Arrival Of The Gods In Particular Country
+    • Palace Of Gods With Door At Each End For Sun's Journey
+    • Moon Steals Food From Banquet Of The Gods
+    • Recurrent Battle (Everlasting Fight)
+    • Fight Of The Gods And Giants
+    • Combat Between God Of Light And Dragon Of Ocean
+
+────────────────────────────────────────────────────────────────────────────────
+  OBJECT  —  3,388 motifs (7.3%)
+  Physical and magical items, artifacts, treasures, tools, weapons
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Magic (2,808), Chance and Fate (150), Animals (147), Marvels (64), Deceptions (60)
+  Sample motifs:
+    • Magic Food Gives Immortality To Gods
+    • Magic Food Rejuvenates The Gods
+    • Magic Drink Gives Immortality To Gods
+    • Springs From Beneath Magic (Holy) Object
+    • Dragon Must Give Up Treasure When Steel Is Thrown On Him
+    • Dragon Guards Treasure
+    • Dragon Feeds On Treasure
+    • Treasure Found In Slain Helpful Animal
+    • Magic Animal Supplies Treasure
+    • Treasure Animals
+    • Treasure-Hog
+    • Treasure-Producing Turkey
+    • Magic Bird Produces Unlimited Food
+    • Treasure-Giving Goat
+    • Magic Jewel Obtained From Elephant
+
+────────────────────────────────────────────────────────────────────────────────
+  ORIGIN  —  2,255 motifs (4.9%)
+  Etiological motifs: why/how things came to be
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Myths (2,024), Tests (59), Wisdom and Folly (57), Marvels (20), Death (15)
+  Sample motifs:
+    • Reason For Creation
+    • Origin Of The Creator
+    • Creation Of Angels And Devils
+    • Creation Of Devil(S)
+    • Creation Of Individual Angels
+    • Time Of Creation Of The Angels
+    • Creation Of Angels
+    • Creation On Condition That Israel Accept Tora
+    • Origin Of The Gods
+    • Origin Of Lesser Gods From Spittle Of Great God
+    • Goddess Born From Sweat Of Rock Washed By Sea
+    • Origin Of Gods -- Miscellaneous
+    • Why Gods Only Accept Blood
+    • Thunderweapon
+    • Early Period When Gods And Men Lived Together, Gods Ruling Men, Ordaining How They Should Live And Originating Various Customs
+
+────────────────────────────────────────────────────────────────────────────────
+  ATTRIBUTE  —  2,174 motifs (4.7%)
+  Qualities, characteristics, appearances, properties
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (416), Magic (400), Wisdom and Folly (334), Myths (163), Ogres (146)
+  Sample motifs:
+    • Creator With Appearance Of Negro
+    • Devil In Serpent Form Tempts First Woman (Satan And Eve)
+    • Deity Born In Shape Of Egg
+    • Twin Gods -- One Mortal, Other Immortal
+    • God As Shape-Shifter
+    • Size-Changing God
+    • Nature And Appearance Of The Gods
+    • God Half Mortal, Half Immortal
+    • God Unusual As To Color
+    • God In Form Of Comet
+    • Goddess Of War In Shape Of (Red) Woman
+    • Goddess Of War In Shape Of Hag
+    • Beautiful Goddess
+    • Deity In Human Form
+    • God Takes Form Successively Of Ants, Scorpion, And Cobra
+
+────────────────────────────────────────────────────────────────────────────────
+  CONDITION  —  1,749 motifs (3.8%)
+  Tabus, prohibitions, enchantments, curses, rules, compacts
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Tabu (1,069), Ordaining the Future (312), Magic (117), Myths (48), Deceptions (44)
+  Sample motifs:
+    • Brahma Cursed By Other Gods: Now Has No Temples
+    • Sun Cursed By Moon
+    • Cause Of Eclipses: Mother's Curse Laid Upon Her Third Son
+    • Preservation Of Life Of Certain Persons In Ireland During Flood
+    • Flood Caused By Melting Of Ice After Great Spell Of Cold
+    • Flood Caused By Curse
+    • Paradise Lost Because Of Forbidden Food
+    • Paradise Lost Because Of Forbidden Fruit (Drink)
+    • Origin Of Menstruation -- Punishment Because Eve Ate Forbidden Fruit
+    • Origin Of Luchrupain (Leprechauns, Dwarfs, Pygmies) From Curses Of Ham
+    • Origin Of "Goat-Heads" From Curse Of Ham
+    • Negroes As Curse On Ham For Laughing At Noah's Nakedness
+    • Differentiation Between "Free" (Saer) And "Unfree" (Daer)
+    • Creation Of Animals As Punishment For Beating Forbidden Drum
+    • Spider Vies With Virgin Mary In Spinning: Cursed
+
+────────────────────────────────────────────────────────────────────────────────
+  OUTCOME  —  985 motifs (2.1%)
+  Rewards, punishments, consequences, fates
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Rewards and Punishments (804), Myths (52), Deceptions (22), Tabu (16), Magic (16)
+  Sample motifs:
+    • God's Vengeance
+    • Eclipse As Punishment By Deity
+    • Man In Moon Has Punishment For Burning Brush On Sunday
+    • Man In Moon Is Put There As Punishment For Cursing God
+    • Man In Moon As Punishment For Disdainful Sacrifice (Cain)
+    • Man In Moon Is Person Thrown Or Sent There As Punishment
+    • Man In The Moon: Tarring Of The Moon
+    • Man In The Moon: Moon's Face Scratched By Hare In Retaliation For Injury To Hare
+    • Joshua As Man In The Moon
+    • Jacob As Man In The Moon
+    • Particular Individual Is Man In The Moon
+    • Man In The Moon
+    • Moon's Phases As Punishment For Moon's Misdoing
+    • Waters Created As Punishment
+    • Calamity As Punishment For Sin
+
+================================================================================
+CATEGORY × CHAPTER CROSS-TABULATION
+================================================================================
+
+                          Being     Action      Place      Event     Object     Origin  Attribute  Condition    Outcome
+Magic                     1,859      1,206        385        364      2,808         10        400        117         16
+Myths                     2,498         57        761        203          4      2,024        163         48         52
+Marvels                   3,387         41      1,106        293         64         20        416         32          7
+Deceptions                2,463        782        129        282         60          6         80         44         22
+Wisdom and Folly          2,598         37        210        252          5         57        334         12         15
+Tests                       696      1,567        178        147         42         59         42         15          6
+Animals                   2,013         12        149        264        147          8         66          8          5
+Death                     1,550          8        150        350         37         15         94          9         10
+Ogres                     1,382         30         95         49         12         11        146         18          2
+Rewards and Punishments        457         38         98         56          7          2         20         28        804
+Sex                       1,035         12         26        315         27         15         56          8          6
+Tabu                         40         21         21         66          4          3          7      1,069         16
+Religion                    715          8        100        187          6          3         18          4         11
+Chance and Fate             552         47         56        122        150          2         70         10          2
+Ordaining the Future        175          1         19        329          4          1          7        312          3
+Society                     690          3         39         86          4          5         13          6          3
+Humor                       501          6         80         29          1          6        127          0          0
+Cruelty                     337          1         35        117          0          2         36          5          0
+Captives and Fugitives        272        145         70         16          3          0          3          0          0
+Miscellaneous               291          1         37         97          0          4         12          1          0
+Traits of Character         273          2         24         41          2          1         22          1          2
+Reversals of Fortune        252          6         11         11          1          1         30          2          3
+Nature of Life              136          2         13          6          0          0         12          0          0
+================================================================================
+BEING SUBCATEGORY BREAKDOWN (improved)
+================================================================================
+
+Rule-matched: 16,848 / 24,172 (69.7%)
+Classifier-predicted: 7,324 (30.3%)
+Post-classification corrections: 0
+Classifier 5-fold CV accuracy: 0.790
+
+────────────────────────────────────────────────────────────────────────────────
+  HUMAN  —  13,000 motifs (53.8% of Being)
+  Ordinary people, royalty, social roles, named humans, heroes
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Wisdom and Folly (2,307), Deceptions (2,067), Magic (1,264), Marvels (1,184), Sex (1,002)
+  Sample motifs:
+    • Creative Mother Source Of Everything
+    • Brothers As Creators
+    • Men As God's Advisers
+    • Living Person Becomes God
+    • Man-Eating God (Goddess)
+    • Carpenter (Wright) Of The Gods
+    • Sun, Moon And Wind Dine With Their Uncle And Aunt, Thunder And Lightning
+    • Eldest God Born In Front, Younger At Back
+    • Jealous Wife Of God
+    • Fisherman Of The Gods
+    • Human Intellect Unable To Conceive God's Essence
+    • Saint Speaks With God Each Thursday
+
+────────────────────────────────────────────────────────────────────────────────
+  SPIRIT  —  4,161 motifs (17.2% of Being)
+  Spirits, ghosts, angels, demons, fairies, elves, undead, merfolk
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (1,584), Death (1,366), Monsters (571), Religion (151), Myths (117)
+  Sample motifs:
+    • Angels As God's Advisers
+    • Devil As Adviser Of God
+    • Angels Created To Execute God's Will
+    • Degraded Gods Become Angels
+    • Angels Existed Prior To Creation
+    • Angels Are Transformed Souls Of The Pious
+    • Angels Created From Three Elements
+    • Angels Created From Words Uttered By God
+    • Angel Of Death Created By God
+    • Angel Michael Created From Fire
+    • Angel Gabriel Created From Snow
+    • Angel Raphael Created From Water
+
+────────────────────────────────────────────────────────────────────────────────
+  ANIMAL  —  4,147 motifs (17.2% of Being)
+  Animals as characters, speaking/helpful/grateful animals
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Animals (1,634), Myths (968), Magic (392), Deceptions (265), Wisdom and Folly (248)
+  Sample motifs:
+    • Three Creators
+    • First Human Pair As Creators
+    • Multiple Creators
+    • Male And Female Creators
+    • Bee As God's Spy
+    • Falcon And Crow As Joint Creators
+    • Joint Creators
+    • Marplot At Creation
+    • Coyote As Marplot At Creation
+    • All-Seeing God
+    • Unity Of God
+    • Purity Of God
+
+────────────────────────────────────────────────────────────────────────────────
+  DEITY  —  1,265 motifs (5.2% of Being)
+  Gods, goddesses, creator figures, demigods, culture heroes
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Myths (1,042), Marvels (34), Magic (32), Religion (24), Wisdom and Folly (17)
+  Sample motifs:
+    • Creator
+    • Sun-God As Creator
+    • Grandfather As Creator
+    • Stone-Woman As Creator
+    • Brahma As Creator
+    • Identity Of Creator
+    • Creator Has Two Sons
+    • Creator's Descendants
+    • Nature Of The Creator
+    • Invisibility Of Creator Learned From The Impossibility Of Staring At The Sun, His Servant
+    • Invisible Creator
+    • Hermaphroditic Creator
+
+────────────────────────────────────────────────────────────────────────────────
+  MONSTER  —  1,094 motifs (4.5% of Being)
+  Giants, monsters, dragons, trolls, cannibals
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (360), Monsters (345), Animals (195), Deceptions (49), Myths (44)
+  Sample motifs:
+    • Giant God Drinks Lakes Dry
+    • Giant Goddess Bestrides Entire Land
+    • Giant Orderly Of The Gods
+    • Giant God
+    • Dragon God
+    • Cannibal Gods
+    • Giant Sword Of Culture Hero
+    • Giant As Culture Hero
+    • Creation From Vapor-Produced Primeval Giant
+    • Sun As A Cannibal
+    • Sun And Moon Born From An Monster
+    • Eclipse Caused By Monster Devouring Sun Or Moon
+
+────────────────────────────────────────────────────────────────────────────────
+  WITCH/SORCERER  —  505 motifs (2.1% of Being)
+  Witches, wizards, sorcerers, magicians, shamans
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Monsters (402), Magic (66), Deceptions (7), Myths (4), Death (4)
+  Sample motifs:
+    • Magician Of The Gods
+    • Snow From Feathers Or Clothes Of A Witch (Frau Holle)
+    • Wolf From Man Transformed By Magician
+    • Blood From Wizard Becomes Red Grain Of Cedar
+    • Sorcerer's Army Of Magic Animals
+    • Magician Fights As Dragon
+    • Witch Transforms Self To Animal (Hare, Pig) So As To Suck Cows
+    • Magic Objects Possessed By Witch, Sorcerer Or Evil Dwarf
+    • Magic Objects Gifts Of Magician
+    • Clairvoyant Tube
+    • Witch Will Never Visit A House Where Pipal Is Strewn
+    • Witch Shot Dead With Bullet Of Salt

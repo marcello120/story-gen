@@ -1,0 +1,620 @@
+TMI Motif Classification Report (Random Forest + Ollama Validation)
+================================================================================
+
+Method: Rule-based classification (Being-priority) + RandomForestClassifier
+        + ollama validation/correction on a stratified sample
+
+Total motifs: 46,230
+Main category rule-matched: 26,948 / 46,230 (58.3%)
+Main RF 5-fold CV accuracy: 0.542 (+/- 0.077)
+Main RF OOB accuracy: 0.865
+
+Being rule-matched: 19,803 / 24,830 (79.8%)
+Being RF 5-fold CV accuracy: 0.704 (+/- 0.118)
+Being RF OOB accuracy: 0.911
+
+Ollama main-category agreement: 31/80 (38.8%)
+Ollama Being-subcategory agreement: 21/40 (52.5%)
+Ollama corrections applied: 49 main + 19 Being
+
+
+────────────────────────────────────────────────────────────────────────────────
+  BEING  —  23,692 motifs (51.2%)
+  Characters, creatures, deities, supernatural entities, animals-as-characters
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (3,108), Wisdom and Folly (2,958), Deceptions (2,758), Myths (2,297), Animals (2,208)
+  Sample motifs:
+    - Creator
+    - Sun-God As Creator
+    - Grandfather As Creator
+    - Stone-Woman As Creator
+    - Brahma As Creator
+    - Identity Of Creator
+    - Three Creators
+    - First Human Pair As Creators
+    - Multiple Creators
+    - Gods Make Earth To Have Place To Rest Their Feet
+    - Creator Has Two Sons
+    - Creator's Descendants
+
+────────────────────────────────────────────────────────────────────────────────
+  ACTION  —  4,286 motifs (9.3%)
+  Tasks, deceptions, tests, transformations, pursuits, escapes
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Tests (1,904), Magic (1,267), Deceptions (717), Captives and Fugitives (154), Myths (46)
+  Sample motifs:
+    - Theft Of Ambrosia
+    - Theft Of Magic Mead By Odin
+    - Sun From Transformation
+    - Theft Of Sun
+    - Pursuit Of Sun By Moon
+    - Contest Between Sun And Moon
+    - Theft Of Moon
+    - Milky Way A Hunting Party
+    - Earth Made By Transformation Of Broken Ground
+    - Meander-Pursuit
+    - River Bursts From Well In Pursuit
+    - River From Transformation
+
+────────────────────────────────────────────────────────────────────────────────
+  OBJECT  —  4,269 motifs (9.2%)
+  Physical and magical items, artifacts, treasures, tools, weapons
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Magic (3,836), Chance and Fate (156), Animals (119), Deceptions (43), Death (26)
+  Sample motifs:
+    - Magic Food Gives Immortality To Gods
+    - Magic Food Rejuvenates The Gods
+    - Magic Drink Gives Immortality To Gods
+    - Springs From Beneath Magic (Holy) Object
+    - Silver Coins From Pumpkin Received From Fishes
+    - Treasure Found In Slain Helpful Animal
+    - Magic Animal Supplies Treasure
+    - Treasure Animals
+    - Treasure-Hog
+    - Treasure-Producing Turkey
+    - Magic Bird Produces Unlimited Food
+    - Treasure-Giving Goat
+
+────────────────────────────────────────────────────────────────────────────────
+  PLACE  —  3,931 motifs (8.5%)
+  Locations, realms, geographic features, cosmic settings
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (1,687), Myths (741), Humor (430), Magic (328), Wisdom and Folly (108)
+  Sample motifs:
+    - Sun And Moon (Man And Wife) As Creators
+    - Old Man From Sky As Creator
+    - Banished Devil Appears On Earth Only On Day Of Dark Moon
+    - Revolting Devil Banished To Hell
+    - Sea Creatures As Ancestors Of Goddess
+    - Ancestor Of The Gods
+    - First Deity Grows Out Of Primeval Chaos
+    - Heaven As God's Throne, Earth His Footstool
+    - Chariot Of Fire Drawn By Four Steeds Of Fire
+    - Extraordinary Physical Characteristics Of Gods
+    - Daily Life Of The Gods
+    - Home Of Gods In Cave
+
+────────────────────────────────────────────────────────────────────────────────
+  EVENT  —  3,183 motifs (6.9%)
+  Narrative happenings: births, deaths, marriages, battles, prophecies
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Magic (385), Religion (385), Death (333), Sex (288), Ordaining the Future (260)
+  Sample motifs:
+    - Conflict Of Good And Evil Creators
+    - Imperfect God, Subject To Death And Rebirth
+    - Conflict Between God's Justice And Mercy
+    - Birth Of Gods
+    - Arrival Of The Gods In Particular Country
+    - Pictorial Representations Of Gods
+    - Distinctive Aroma Of Gods
+    - Palace Of Gods With Door At Each End For Sun's Journey
+    - Golden Mansions Of Gods
+    - Moon Steals Food From Banquet Of The Gods
+    - Hierarchy Of Gods
+    - Recurrent Battle (Everlasting Fight)
+
+────────────────────────────────────────────────────────────────────────────────
+  ORIGIN  —  2,547 motifs (5.5%)
+  Etiological motifs: why/how things came to be
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Myths (2,333), Tests (68), Wisdom and Folly (55), Marvels (15), Death (11)
+  Sample motifs:
+    - Creative Mother Source Of Everything
+    - Reason For Creation
+    - Nature Of The Creator
+    - Pictorial Representations Of Creator
+    - Nature Of Creator -- Miscellaneous
+    - Origin Of The Creator
+    - Creation Of Angels And Devils
+    - Creation Of Devil(S)
+    - Creation Of Individual Angels
+    - Archangels Created On First, Angels On Third Day Of Creation
+    - Time Of Creation Of The Angels
+    - Material Of Which Angels Are Created (Fire, Water And Snow)
+
+────────────────────────────────────────────────────────────────────────────────
+  CONDITION  —  1,949 motifs (4.2%)
+  Tabus, prohibitions, enchantments, curses, rules, compacts
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Tabu (1,094), Ordaining the Future (452), Magic (217), Deceptions (37), Myths (36)
+  Sample motifs:
+    - Brahma Cursed By Other Gods: Now Has No Temples
+    - Decree Of Gods Irrevocable
+    - Sun Cursed By Moon
+    - Cause Of Eclipses: Mother's Curse Laid Upon Her Third Son
+    - Flood Caused By Melting Of Ice After Great Spell Of Cold
+    - Flood Caused By Curse
+    - Paradise Lost Because Of Forbidden Food
+    - Paradise Lost Because Of Forbidden Fruit (Drink)
+    - Origin Of Menstruation -- Punishment Because Eve Ate Forbidden Fruit
+    - Origin Of Luchrupain (Leprechauns, Dwarfs, Pygmies) From Curses Of Ham
+    - Origin Of "Goat-Heads" From Curse Of Ham
+    - Negroes As Curse On Ham For Laughing At Noah's Nakedness
+
+────────────────────────────────────────────────────────────────────────────────
+  OUTCOME  —  1,235 motifs (2.7%)
+  Rewards, punishments, consequences, fates
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Rewards and Punishments (1,120), Myths (17), Tabu (16), Deceptions (16), Magic (14)
+  Sample motifs:
+    - Eclipse As Punishment By Deity
+    - Moon's Phases As Punishment For Moon's Misdoing
+    - Waters Created As Punishment
+    - Calamity As Punishment For Sin
+    - Flood As Punishment For Breaking Tabu
+    - Flood As Punishment For Incest
+    - Flood As Punishment
+    - A "Flame Of Fire Swifter Than A Blast Of Wind" As Punishment For The Sin Of The Irish
+    - Rainy Weather Sent By Saint As Punishment
+    - Disease As Punishment
+    - Fire Witheld From Men As Punishment
+    - Bees Pray For Sting: Punishment, First Sting Suicidal
+
+────────────────────────────────────────────────────────────────────────────────
+  ATTRIBUTE  —  1,138 motifs (2.5%)
+  Qualities, characteristics, appearances, properties
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Magic (285), Marvels (256), Wisdom and Folly (212), Myths (112), Reversals of Fortune (39)
+  Sample motifs:
+    - Twin Gods -- One Mortal, Other Immortal
+    - Size-Changing God
+    - Nature And Appearance Of The Gods
+    - Nature And Appearance Of The Gods -- Miscellaneous
+    - Appearance Of Thunder-Spirit
+    - Twin Culture Heroes -- One Foolish, One Clever
+    - Size And Distances Of The Universe
+    - Sun And Moon Brothers: Sun Clever, Moon Stupid
+    - Islands Originally Form Continent, Later Separated
+    - Soil Dropped To Form Mountains
+    - Fettered Monster In Human Form
+    - Form Of Fettered Monster
+
+
+================================================================================
+BEING SUBCATEGORY BREAKDOWN
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+  HUMAN  —  11,642 motifs (46.9% of Being)
+  Ordinary people, royalty, social roles, named humans, heroes
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Wisdom and Folly (2,584), Deceptions (2,298), Sex (1,098), Society (740), Chance and Fate (602)
+  Sample motifs:
+    - Human Creator
+    - Woman Who Fell From The Sky
+    - Mortal Translated To Heaven And Deified
+    - Saint Goes To Heaven Every Thursday (Each Day) And Talks With Angels
+    - Mortal As Umpire Of Quarrel Between Gods
+    - Man As Helper Of Thundergod
+    - Son Of The Sun
+    - Saint Peter As Ruler For The Air And Rain
+    - Warrior Chieftain Of Underworld
+    - Mother Earth Pregnant With Adam
+    - Mother Earth
+    - Father And Son As Culture Heroes
+
+────────────────────────────────────────────────────────────────────────────────
+  SPIRIT  —  4,936 motifs (19.9% of Being)
+  Spirits, ghosts, angels, demons, fairies, elves, undead, merfolk
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (1,989), Death (1,593), Ogres (694), Religion (162), Myths (94)
+  Sample motifs:
+    - Angel As Creator
+    - Souls Of Pious As Creator's Advisers
+    - Angels Existed Prior To Creation
+    - Angels Are Transformed Souls Of The Pious
+    - Angels Created From Three Elements
+    - Angels Created From Words Uttered By God
+    - Angel Michael Created From Fire
+    - Angel Gabriel Created From Snow
+    - Angel Raphael Created From Water
+    - Angel Of Destruction Created From Hail And Fire
+    - Angels Created On First Day Of Creation
+    - Angels Created On Second Day Of Creation
+
+────────────────────────────────────────────────────────────────────────────────
+  ANIMAL  —  3,457 motifs (13.9% of Being)
+  Animals as characters, speaking/helpful/grateful animals
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Animals (1,784), Myths (480), Deceptions (310), Wisdom and Folly (290), Magic (102)
+  Sample motifs:
+    - Bird As Creator's Companion
+    - Insect As Creator's Companion
+    - Animal As Creator's Companion
+    - Coyote As Marplot At Creation
+    - The Bull With Three Cranes
+    - Bird As The Shadow Of A God
+    - Goat (Heidrún) In Valhalla Gives Mead
+    - Deer (Eikthyrnir) In Valhalla Fills The Fountain Hvergelmir
+    - Serpent Supports Sky
+    - Wolf In Hell
+    - Birds Made Of Iron In Hell
+    - Cock Of Hell
+
+────────────────────────────────────────────────────────────────────────────────
+  DEITY  —  1,865 motifs (7.5% of Being)
+  Gods, goddesses, creator figures, demigods, culture heroes
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Myths (1,534), Wisdom and Folly (54), Marvels (40), Deceptions (33), Magic (29)
+  Sample motifs:
+    - Creator
+    - Sun-God As Creator
+    - Grandfather As Creator
+    - Stone-Woman As Creator
+    - Brahma As Creator
+    - Identity Of Creator
+    - Three Creators
+    - First Human Pair As Creators
+    - Multiple Creators
+    - Gods Make Earth To Have Place To Rest Their Feet
+    - Creator Has Two Sons
+    - Creator's Descendants
+
+────────────────────────────────────────────────────────────────────────────────
+  MONSTER  —  1,145 motifs (4.6% of Being)
+  Giants, monsters, dragons, trolls, cannibals
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (468), Ogres (302), Animals (223), Deceptions (32), Myths (30)
+  Sample motifs:
+    - Thunderbird
+    - Creation From Vapor-Produced Primeval Giant
+    - Dragons In Hell
+    - Sun As A Cannibal
+    - Giant In Moon
+    - The Leviathan That Surrounds The Globe
+    - Lakes Made By Giant Or Devil
+    - Giant Drinks Up Ocean
+    - Mountains From Stones Dropped From Giant's Clothes
+    - Hills From Stones Cast By Giants
+    - Chasms Between Rocks Mark "Leaps" Of Giants, Heroes, Etc Irish Myth: Cross
+    - Indentions On Rocks Caused By Giants
+
+────────────────────────────────────────────────────────────────────────────────
+  WITCH/SORCERER  —  638 motifs (2.6% of Being)
+  Witches, wizards, sorcerers, magicians, shamans
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Ogres (525), Magic (72), Death (9), Deceptions (7), Myths (4)
+  Sample motifs:
+    - Magician Of The Gods
+    - Witch-Woman Of Upper World
+    - Snow From Feathers Or Clothes Of A Witch (Frau Holle)
+    - Wolf From Man Transformed By Magician
+    - Sorcerer's Army Of Magic Animals
+    - Magician Fights As Dragon
+    - Witch Transforms Self To Animal (Hare, Pig) So As To Suck Cows
+    - Magic Objects Possessed By Witch, Sorcerer Or Evil Dwarf
+    - Witch Will Never Visit A House Where Pipal Is Strewn
+    - Witch Shot Dead With Bullet Of Salt
+    - Silver Bullet Protects Against Giants, Ghosts, And Witches
+    - Magic Horseshoe Keeps Off Devils, Trolls, And Witches
+
+────────────────────────────────────────────────────────────────────────────────
+  PLACE  —  449 motifs (1.8% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Marvels (204), Humor (156), Myths (87), Captives and Fugitives (1), Miscellaneous (1)
+  Sample motifs:
+    - Sun And Moon (Man And Wife) As Creators
+    - Ancestor Of The Gods
+    - First Deity Grows Out Of Primeval Chaos
+    - Extraordinary Physical Characteristics Of Gods
+    - Daily Life Of The Gods
+    - Milk Of The Gods
+    - Drink Of The Gods
+    - Chariot Of The Gods
+    - Mutual Relations Of The Gods
+    - Wild Beasts As Messengers Of The Gods
+    - Cupbearer Of The Gods Controls Waters
+    - Army Of The Gods
+
+────────────────────────────────────────────────────────────────────────────────
+  OBJECT  —  235 motifs (0.9% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Magic (211), Animals (20), Chance and Fate (2), Marvels (1), Sex (1)
+  Sample motifs:
+    - Amphibian With Magic Knowledge
+    - Magic Bird Petrifies Those Who Approach
+    - Magic Bird's Song
+    - Magic Bird's Song Dispels Grief
+    - Magic Osprey (Transformed Man) Produces Lightning
+    - Magic Birds Cause Hosts To Sleep By Shaking Wings
+    - Magic Salmon Carries Hero Over Water
+    - Magic Lap-Dog
+    - Magic Dog Transformed Person
+    - Magic Dog Transformed Supernatural Being
+    - Magic Dog Fragrant
+    - Magic Brazen Dog
+
+────────────────────────────────────────────────────────────────────────────────
+  EVENT  —  216 motifs (0.9% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Religion (128), Sex (28), Miscellaneous (21), Magic (12), Deceptions (9)
+  Sample motifs:
+    - Friendships Between The Animals
+    - Enmity Between Leopard And Deer
+    - Enmity Between Fowl And Dog
+    - Enmity Between Tiger And Bear
+    - Enmity Between Crocodile And Elephant
+    - Enmity Between Chimpanzee And Man
+    - Enmity Between Bird And Lizard
+    - Faithful Horse Joins In Keen At Hero's Death
+    - Faithful Cow Refuses To Move For Grief At Master's Death
+    - Faithful Cows Lose Milk At King's Death
+    - Image Of Golden Calf Vivified
+    - "Spirit Of Poetry" As Hideous Youth Becomes Beautiful
+
+────────────────────────────────────────────────────────────────────────────────
+  ACTION  —  95 motifs (0.4% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Tests (55), Captives and Fugitives (16), Deceptions (12), Magic (9), Chance and Fate (2)
+  Sample motifs:
+    - Oil Changed To Jewels
+    - Faithful Brother Transforms Self To Deer To Seek Sister
+    - Bell Refuses To Be Moved
+    - Means Of Becoming Magician
+    - Barrenness Removed By Eating Or Drinking
+    - Years Seem Moments While Man Listens To Song Of Bird
+    - Cows Made To Give Bad Milk
+    - Enemies Magically Made To Feel Thirst
+    - Cauldron Magically Sticks To Wall
+    - Recognition Of False Bride By Inability To Finish True Bride's Weaving
+    - Recognition By Shoes With Which The Father Had Once Beaten His Son
+    - Disguised King (Noble) Recognized By Habitual Speech
+
+────────────────────────────────────────────────────────────────────────────────
+  ORIGIN  —  83 motifs (0.3% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Myths (82), Wisdom and Folly (1)
+  Sample motifs:
+    - Pictorial Representations Of Creator
+    - Nature Of Creator -- Miscellaneous
+    - Archangels Created On First, Angels On Third Day Of Creation
+    - Creation Match Between Goddess-Wife, God-Husband
+    - Characteristics Of Deity
+    - Parents Of The Gods
+    - Sleipnir: Eight-Legged Horse Of Odin
+    - Smith Of The Gods
+    - Physician Of The Gods
+    - Garden Of The Gods
+    - Home Of The Gods
+    - Food Of The Gods
+
+────────────────────────────────────────────────────────────────────────────────
+  CONDITION  —  28 motifs (0.1% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Ordaining the Future (18), Magic (10)
+  Sample motifs:
+    - Disenchantment With Missing Member
+    - Disenchantment Of Girl By Carrying Her On Back
+    - Disenchantment Of Animal By Admission To Woman's Bed
+    - Disenchantment Of Monster Child When Baptized
+    - Disenchantment From Bird When Queen Milks Own Milk Into Bird's Beak
+    - Disenchantment At Midnight After Owl Hoots Three Times
+    - Disenchantment Of Girl Only By Lover
+    - Disenchantment Promised If Girl May Marry Transformed Man
+    - Disenchantment Can Be Done By Wife
+    - Disenchantment Fails Because Conditions Are Not Fulfilled
+    - Gardener Made King By Minister Decides Against Him In Law Case And Returns Lands To Plaintiff
+    - Host Offers To Send His Guest A Cask Of The Wine He Has Praised
+
+────────────────────────────────────────────────────────────────────────────────
+  ATTRIBUTE  —  27 motifs (0.1% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Animals (4), Wisdom and Folly (4), Reversals of Fortune (4), Sex (3), Marvels (2)
+  Sample motifs:
+    - Feet Of Various Peoples
+    - Power Of Soothsaying From Serpents' Licking Ears
+    - Clever And Swift Horse Of Dromedary-Family
+    - Strong Teeth Of Lion
+    - Elephants Have Power Of Bringing Rain
+    - Tree By Day; Man By Night
+    - Resuscitation By Power Of Goddess
+    - Holy Man (Hero) Emits Light
+    - Remarkable Spear Used As A Windbreak
+    - Rakshasas Have Power Of Extending Bodies Eighty Miles
+    - The Clever Wife In Disguise Wins A Second Wife For Her Husband
+    - Dying Saint Leaves Wise Message To Followers
+
+────────────────────────────────────────────────────────────────────────────────
+  OUTCOME  —  14 motifs (0.1% of Being)
+  
+────────────────────────────────────────────────────────────────────────────────
+  Top chapters: Rewards and Punishments (14)
+  Sample motifs:
+    - Hospitality To Saint Repaid: Neither He Nor His Posterity Will Ever Be Hurt By Venomous Creatures
+    - Ruler Rewards Man's Love For His Captive Wife With Riches And Freedom
+    - Ferocious Animal (Lion, Tiger, Etc) Rewards Man Who Does Not Fear It
+    - Spurned Suitor Is Offered Girl By Her Mother
+    - Pot Of Boiling Oil Thrown At Compassionate Woman Does Not Harm Her
+    - "God Has No Use For Me, And The Devil Will Not Take Me
+    - Undesired Suitor Killed Asleep In His Tent
+    - Adulteress Confined In Room Containing The Corpse Of Her Paramour
+    - Persecuted Queen Meanly Clothed And Set Where All Are Commanded To Spit On Her
+    - Seducer, Who Had Disguised As Woman, Is Led Naked Through Streets
+    - Adulteress Punished By Having Skeleton Of Her Former Paramour Hang In Her Room
+    - When Hungry Man Tries To Gather Fruit It Flies Out Of His Reach
+
+
+================================================================================
+CATEGORY x CHAPTER CROSS-TABULATION
+================================================================================
+
+                          Being     Action     Object      Place      Event     Origin  Condition    Outcome  Attribute
+Magic                       825      1,267      3,836        328        385          8        217         14        285
+Myths                     2,297         46          5        741        223      2,333         36         17        112
+Marvels                   3,108         33         18      1,687        228         15         16          5        256
+Deceptions                2,758        717         43         67        192          5         37         16         33
+Wisdom and Folly          2,958         24          6        108        135         55         10         12        212
+Tests                       540      1,904         21         76        103         68         15          5         20
+Animals                   2,208          6        119         76        216          7          6          3         31
+Death                     1,728          7         26         81        333         11          3          7         27
+Ogres                     1,649         20          4         21         15          8         15          0         13
+Rewards and Punishments        236         27          1         62         35          2         22      1,120          5
+Sex                       1,144          7         16         11        288         11          2          3         18
+Tabu                         67         19          1         15         28          3      1,094         16          4
+Religion                    569          5          6         63        385          0          3          7         14
+Chance and Fate             688         33        156         36         66          2         10          2         18
+Ordaining the Future        118          1          2         11        260          1        452          3          3
+Society                     760          2          3         18         47          5          5          2          7
+Humor                       283          4          0        430         15          6          0          0         12
+Cruelty                     418          1          0         18         91          1          2          0          2
+Captives and Fugitives        301        154          3         39          9          1          1          0          1
+Miscellaneous               300          1          0         24         99          4          1          0         14
+Traits of Character         331          2          1          9         19          1          0          0          5
+Reversals of Fortune        256          5          2          5          5          0          2          3         39
+Nature of Life              150          1          0          5          6          0          0          0          7
+
+
+================================================================================
+OLLAMA VALIDATION DETAILS
+================================================================================
+
+Main category validation (80 motifs sampled):
+  [Myths               ] Palaces Of The Gods                                           AGREE
+  [Myths               ] Decree Of Gods Irrevocable                                    AGREE
+  [Myths               ] Heavenly Music Caused By Four Columns Under Lord's Chair      AGREE
+  [Myths               ] Originally A Moon But No Sun                                  AGREE
+  [Myths               ] Partial Eclipses Because Of Ailments Of Sun Or Moon           AGREE
+  [Myths               ] Breaking Forth Of Springs Partial Cause Of Flood              AGREE
+  [Myths               ] Silver Coins From Pumpkin Received From Fishes                AGREE
+  [Myths               ] Origin Of Castes From Instructions Received In Dream          AGREE
+  [Myths               ] Why Dragon Dies By Means Of Fire                              AGREE
+  [Myths               ] Why Certain Trees Are Dwarfed                                 AGREE
+  [Animals             ] Faithful Animal Killed In Battle                              AGREE
+  [Tabu                ] Tabu: Asking About Marvels Which One Sees                     AGREE
+  [Tabu                ] Tabu: Watching A Game Without Helping The Losing Player       AGREE
+  [Magic               ] Change Of Sex After Crossing Water                            AGREE
+  [Magic               ] Transformation: Man To Dog                                    AGREE
+  [Magic               ] Images Of Parrots Vivified                                    AGREE
+  [Magic               ] Pancakes Made Of Snow                                         AGREE
+  [Magic               ] Bag Of Stones Becomes Auks On Touching Ground                 AGREE
+  [Magic               ] Disenchantment From Bird By Cutting Off Bill                  AGREE
+  [Magic               ] Disenchantment From Flower By Breaking Stalk                  AGREE
+  [Magic               ] Disenchantment Of Another By Weeping Jug Of Tears             AGREE
+  [Magic               ] Disenchantment By Obeying Directions Received In A Dream      AGREE
+  [Magic               ] Other Means Of Disenchantment                                 AGREE
+  [Magic               ] Attendant Circumstances Of Disenchantment                     AGREE
+  [Magic               ] Disenchantment Fails Because Conditions Are Not Fulfilled     AGREE
+  [Magic               ] Disenchantment Made Permanent By Holding To A Hair            AGREE
+  [Magic               ] Breakage Of Glass Or Crockery Occurs In Threes                AGREE
+  [Magic               ] Star Of Bethlehem                                             AGREE
+  [Magic               ] Water Of Youth                                                AGREE
+  [Magic               ] Medicines Of Forgetfulness And Remembering                    AGREE
+  [Magic               ] Tree Of Delusion                                              AGREE
+  [Magic               ] Magic Shirt Protects From Cold And Burning                    AGREE
+  [Magic               ] Magic Club Brings Thieves To Master                           AGREE
+  [Magic               ] Magic Wishing-Nut                                             AGREE
+  [Magic               ] Magic Object Furnishes Livestock (Oxen, Horses, Etc)          AGREE
+  [Magic               ] Magic Spell Destroys Crops                                    AGREE
+  [Magic               ] Automatic Hen And Chickens Of Gold                            AGREE
+  [Magic               ] Wounds Of Crucifix Bleed                                      AGREE
+  [Magic               ] Calf Of Gold Moves                                            AGREE
+  [Magic               ] Inexhaustible Vase Of Bonbons                                 AGREE
+  [Magic               ] Means Of Becoming Magician                                    AGREE
+  [Magic               ] Interpreter Of Dreams                                         AGREE
+  [Magic               ] Means Of Producing Magic Power                                AGREE
+  [Magic               ] Characteristics Of Animal Acquired By Eating It               AGREE
+  [Magic               ] Sight Of Mermaid Bad Omen                                     AGREE
+  [Magic               ] Invulnerability From Certain Things                           AGREE
+  [Magic               ] Attainment Of Invulnerability                                 AGREE
+  [Magic               ] Rejuvenation By Looking Into Mirror                           AGREE
+  [Magic               ] Miscellaneous Means Of Rejuvenation                           AGREE
+  [Magic               ] Barrenness Removed By Eating Or Drinking                      AGREE
+  [Magic               ] Kiss Of Forgetfulness                                         AGREE
+  [Magic               ] Druid Makes Self Appear Ugly On One Side, Beautiful On Other  AGREE
+  [Magic               ] Other Forms Of Bewitching                                     AGREE
+  [Magic               ] Starvation Prevented By Composition Of Hymn                   AGREE
+  [Magic               ] Wind Raised By Loosing Certain Knots                          AGREE
+  [Magic               ] Tree Blooms Out Of Season                                     AGREE
+  [Magic               ] Rice Paddies Flooded Or Dried By Toad's Tears Or Laughter     AGREE
+  [Marvels             ] No Time, No Birth, No Death In Otherworld                     AGREE
+  [Marvels             ] Strong Man Evades Death                                       AGREE
+  [Tests               ] Bridegroom-To-Be Has To Have Three Pecks, Three Quarts Of Go  AGREE
+  [Tests               ] Test Of Suitor's Love And Endurance By Constant Postponing    AGREE
+  [Tests               ] Suitor Contest: Throwing Ball Up To Princess                  AGREE
+  [Tests               ] Task: Gathering Vessel Full Of Nail-Scrapings                 AGREE
+  [Tests               ] Riches The Reward Of Questions Solved On Quests               AGREE
+  [Tests               ] Quest For Vanished Daughter                                   AGREE
+  [Wisdom and Folly    ] Sleeping Soldier Thought To Be Recumbent Statue In Chapel     AGREE
+  [Deceptions          ] Wise Man Disguised As Monk Beats Learned Heretic In Debate    AGREE
+  [Deceptions          ] Deceptive Land Bargain: Saints Agree That The One Who Casts   AGREE
+  [Deceptions          ] Impostors Claim Reward (Prize) Earned By Hero                 AGREE
+  [Reversals of Fortune] Very Small Hero                                               AGREE
+  [Chance and Fate     ] Treasure Left In Stick                                        AGREE
+  [Rewards and Punishments] Generosity To Saint (God) In Disguise Rewarded                AGREE
+  [Rewards and Punishments] Reward For Shielding Mary In Childbirth From Gaze Of Onlooke  AGREE
+  [Rewards and Punishments] Humility Before Saint (God) In Disguise Rewarded              AGREE
+  [Rewards and Punishments] Adulteress Made To Drink From Paramour's Skull                AGREE
+  [Rewards and Punishments] Penance: Lying The First Night With Every Corpse Brought To   AGREE
+  [Rewards and Punishments] Sacrilege And Blasphemy Punished By Magic Adhesion            AGREE
+  [Captives and Fugitives] Captivity In Tower (Castle, Prison)                           AGREE
+  [Sex                 ] Marriage Of Dragon Girl To Orphan Boy                         AGREE
+  [Sex                 ] Nurture And Growth Of Children                                AGREE
+
+Being subcategory validation (40 motifs sampled):
+  [Myths               ] Human Intellect Unable To Conceive God's Essence              AGREE
+  [Myths               ] Stars As Children Of Sun Eaten By Their Father                CORRECTED Place->Deity
+  [Myths               ] Sun Eats All His Own Children Except Morning Star, While Moo  AGREE
+  [Myths               ] Great Fish Killed By Hero And Cut Into Sixteen Pieces: The G  AGREE
+  [Myths               ] Confusion Of Tongues Partly Due To Lack Of Understanding Of   AGREE
+  [Myths               ] Snipe Messenger For Warriors Because He Was A Messenger When  AGREE
+  [Myths               ] Food Of Hare                                                  CORRECTED Origin->Animal
+  [Animals             ] Mermaid Appears As Omen Of Catastrophe                        AGREE
+  [Animals             ] Magic Animal Used By Hero In Contest Grows Bigger With Every  AGREE
+  [Magic               ] Change Of Sex By Exchange With A Yaksa (Ogre)                 AGREE
+  [Magic               ] Reed As Direction Finder                                      CORRECTED Object->Animal
+  [Magic               ] Magic Serpent Heart Kills Giant                               AGREE
+  [Magic               ] Pillars Dance When Ogre Plays Guitar                          AGREE
+  [Magic               ] Magic Invisibility Of Ogre                                    AGREE
+  [Magic               ] Mistress Summoned By Wish                                     CORRECTED Object->Witch/Sorcerer
+  [Magic               ] Porcupine As Controller Of Cold                               CORRECTED Object->Animal
+  [Magic               ] Tree Blooms Out Of Season                                     CORRECTED Event->Human
+  [Death               ] Ghost Summoned -- Miscellaneous                               AGREE
+  [Marvels             ] Extraordinary Companions Perform Hero's Tasks                 CORRECTED Place->Human
+  [Marvels             ] Extraordinary Companions Betray Hero                          CORRECTED Place->Human
+  [Marvels             ] Giant Tree: Nuts Fall Scores Of Miles Away, Etc Irish Myth:   AGREE
+  [Ogres               ] Ritual Cannibalism: Corpse Of Hero (Demigod) Eaten To Acquir  AGREE
+  [Ogres               ] Objects Driven Into Tracks Of Witch Immobilize Her            AGREE
+  [Ogres               ] Demons Marry Among Themselves                                 AGREE
+  [Ogres               ] Rakshasa Eats Many Of The Domestic Animals Each Night         AGREE
+  [Ogres               ] Stone Giants                                                  AGREE
+  [Ogres               ] Mistake Of Elder Leads Two Brothers To The Home Of Ogre       AGREE
+  [Ogres               ] Ogre Killed By Throwing Hot Stones (Metal) Into His Throat    AGREE
+  [Ogres               ] Ogre Torn To Pieces By Birds                                  AGREE
+  [Ogres               ] Ogre Captured While Transformed To Animal                     AGREE
+  [Ogres               ] Ogre Kills Self When He Sees Crumbs Lying On His Belly        AGREE
+  [Ogres               ] Ogre Tricked Into Carrying His Prisoners Home In Bag On His   AGREE
+  [Wisdom and Folly    ] Every Fruit Tasted                                            AGREE
+  [Wisdom and Folly    ] Wolf (Bear) Boasts Of Having Eaten Horses                     AGREE
+  [Deceptions          ] Person Substitutes For Human Sacrifice                        AGREE
+  [Chance and Fate     ] Secret Remedy Revealed By Departing Animal                    CORRECTED Object->Animal
+  [Sex                 ] Man Transformed To Animal Kept As Pet By Heroine              AGREE
+  [Religion            ] Worship Of Manifestations In Nature                           CORRECTED Event->Deity
+  [Religion            ] Objects Of Worship                                            CORRECTED Event->Deity
+  [Religion            ] Stella Maris: Virgin Mary As Protectress Of Sailors           CORRECTED Event->Deity

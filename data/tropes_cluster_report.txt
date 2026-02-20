@@ -1,0 +1,240 @@
+TV Tropes Semantic Category Report
+================================================================================
+
+Categories assigned via rule-based pattern matching on trope names
+and descriptions, with a TF-IDF + SGD classifier for unmatched tropes.
+Rule-matched: 26,202 / 30,984 (84.6%)
+Classifier-predicted: 4,782 (15.4%)
+Classifier 5-fold CV accuracy: 0.807
+
+
+────────────────────────────────────────────────────────────────────────────────
+  CHARACTER  —  7,555 tropes (24.4%)
+  Character archetypes, types, roles, species
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbandonedMascot
+    • AbandonedPetInABox
+    • AbdicateTheThrone
+    • AbhorrentAdmirer
+    • AbilityRequiredToProceed
+    • AbnormalLimbRotationRange
+    • AbsentAliens
+    • AbsenteeActor
+    • AbsentMindedProfessor
+    • AbsoluteCleavage
+    • AbusiveAlienParents
+    • AcademicAthlete
+    • AcademyOfAdventure
+    • ACatInAGangOfDogs
+    • AccentInterest
+
+────────────────────────────────────────────────────────────────────────────────
+  EVENT  —  4,866 tropes (15.7%)
+  Dramatic moments, battles, deaths, transformations
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbandonedCatchphrase
+    • AbandonedHospitalAwakening
+    • AbandonedLaboratory
+    • AbandonedWarChild
+    • AbandonShip
+    • Abandonware
+    • AbductionIsLove
+    • AbilityMixing
+    • AbominationAccusationAttack
+    • AbortedDeclarationOfLove
+    • AbsenceOfEvidence
+    • Absurdism
+    • AbsurdlyHighLevelCap
+    • AbsurdlyHighStakesGame
+    • AbsurdlyLowLevelCap
+
+────────────────────────────────────────────────────────────────────────────────
+  OBJECT  —  3,237 tropes (10.4%)
+  Props, weapons, artifacts, vehicles, technology
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbbeyRoadCrossing
+    • AbnormalAmmo
+    • AbstractEater
+    • AbsurdCuttingPower
+    • AbsurdlyDedicatedWorker
+    • AbsurdlyLongWait
+    • AbsurdlySharpBlade
+    • AccessoryWearingCartoonAnimal
+    • AccidentalKidnapping
+    • AccidentalVentriloquism
+    • AcidRefluxNightmare
+    • AcousticLicense
+    • ActingUnnatural
+    • ActionInsuranceGag
+    • ActorInspiredElement
+
+────────────────────────────────────────────────────────────────────────────────
+  SETTING  —  3,205 tropes (10.3%)
+  Locations, worlds, environments, time periods
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbandonedArea
+    • AbandonedHospital
+    • AbandonedInfoPage
+    • AbandonedPlayground
+    • AbandonedWarehouse
+    • ABNegative
+    • AboutTheAuthor
+    • AbsurdAltitude
+    • AbsurdlyCoolCity
+    • AbsurdlyLongStairway
+    • AbsurdlyPowerfulStudentCouncil
+    • AbsurdlySharpClaws
+    • AbsurdlySpaciousSewer
+    • AbUrbeCondita
+    • AcademicAlphaBitch
+
+────────────────────────────────────────────────────────────────────────────────
+  GENRE/TONE  —  3,037 tropes (9.8%)
+  Genre markers, mood, atmosphere, meta-genre
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbandonShipping
+    • AbridgedForChildren
+    • AbsoluteXenophobe
+    • AbstractApotheosis
+    • AbsurdlyIneffectiveBarricade
+    • AbsurdPhobia
+    • AbuseMistake
+    • AcceptablePoliticalTargets
+    • AcceptableReligiousTargets
+    • AccidentalDiscovery
+    • AccidentalKiss
+    • AccidentalNightmareFuel
+    • AccidentalPornomancer
+    • AccuseTheWitness
+    • AcronymTropeNames
+
+────────────────────────────────────────────────────────────────────────────────
+  DIALOGUE  —  2,634 tropes (8.5%)
+  Speech patterns, catchphrases, naming conventions
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • ABloodyMess
+    • AbsurdlyLongLimousine
+    • ACappella
+    • AccentAdaptation
+    • AccentDepundent
+    • AccentsArentHereditary
+    • AccentSlipUp
+    • AcceptableEthnicTargets
+    • AccidentalBid
+    • AccidentalHandHold
+    • AccidentalHug
+    • AccidentalInnuendo
+    • AccidentalMarriage
+    • AccidentalPun
+    • AccidentalRhyme
+
+────────────────────────────────────────────────────────────────────────────────
+  PLOT DEVICE  —  2,198 tropes (7.1%)
+  Narrative mechanics, plot structures, story patterns
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • ABirthdayNotABreak
+    • AbortedArc
+    • AccidentalAesop
+    • Acrofatic
+    • ActionBasedMission
+    • ActionGenre
+    • ActionizedSequel
+    • ActivationSequence
+    • ActualPacifist
+    • AdamAndEvePlot
+    • AdaptationalAlternateEnding
+    • AdaptationalJobChange
+    • AdaptationalMundanity
+    • AdaptationInducedPlotHole
+    • AdaptationInspiration
+
+────────────────────────────────────────────────────────────────────────────────
+  RELATIONSHIP  —  1,686 tropes (5.4%)
+  Interpersonal dynamics, romance, family, teams
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbandonedMine
+    • AbandonTheDisabled
+    • AbileneParadox
+    • AboveGoodAndEvil
+    • AboveTheInfluence
+    • ABoyAGirlAndABabyFamily
+    • ABoyAndHisX
+    • AbsenceMakesTheHeartGoYonder
+    • AbsoluteComparative
+    • AbsurdlyElderlyMother
+    • AbsurdlyHugePopulation
+    • AbusiveAdvertising
+    • AbusiveParents
+    • AbusivePrecursors
+    • AccentuateTheNegative
+
+────────────────────────────────────────────────────────────────────────────────
+  VISUAL/STYLE  —  1,529 tropes (4.9%)
+  Cinematography, art, music, aesthetics
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbilityOverAppearance
+    • AbsurdlyBrightLight
+    • AccidentallyCorrectWriting
+    • AccidentalPervert
+    • AcclaimedFlop
+    • AccordionMan
+    • AccuserOfTheBrethren
+    • AcheyScars
+    • ActionFashionista
+    • ActionHoggingOpening
+    • ActorRoleConfusion
+    • AdaptationalDumbass
+    • AdBreakDoubleTake
+    • AdDissonance
+    • AffectionateGestureToTheHead
+
+────────────────────────────────────────────────────────────────────────────────
+  POWER/ABILITY  —  814 tropes (2.6%)
+  Superpowers, magic systems, combat abilities
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AboveTheGods
+    • AbridgedArenaArray
+    • AccidentallyCorrectZoology
+    • AchievementTestOfDestiny
+    • ActBreak
+    • AdaptationalAbomination
+    • AddictiveMagic
+    • AdjustingYourGlasses
+    • AFormYouAreComfortableWith
+    • AirAidedAcrobatics
+    • AirborneAircraftCarrier
+    • AirHugging
+    • AlchemyIsMagic
+    • AllergicToEvil
+    • AllMonksKnowKungFu
+
+────────────────────────────────────────────────────────────────────────────────
+  NARRATIVE DEVICE  —  223 tropes (0.7%)
+  Meta-narrative, structural, storytelling techniques
+────────────────────────────────────────────────────────────────────────────────
+  Sample tropes:
+    • AbledInTheAdaptation
+    • AbstractScale
+    • AcceptableBreaksFromCanon
+    • ActorSharedBackground
+    • AdaptationalBackstoryChange
+    • AdaptationalEarlyAppearance
+    • AdaptationalHeroism
+    • AdaptationalLateAppearance
+    • AdaptationalModesty
+    • AdaptationalNonsapience
+    • AdaptationDeviation
+    • AdaptationDistillation
+    • AdaptationExpansion
+    • AdaptationExplanationExtrication
+    • AdaptationSequence
