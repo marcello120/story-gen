@@ -73,7 +73,7 @@ function generateCallToAdventure(
     villain: Entity,
     originalWorld: Place,
 ): CallToAdventureBeat {
-    const inciting = maybe() ? pickAny(pools, "Event", "Condition", "Outcome", "Action") : null;
+    const inciting = maybe() ? pickAny(pools, "Condition", "Outcome", "Action") : null;
     const herald = maybe() ? pickBeing(pools, maybe() ? "Spirit" : "Animal") : null;
     const hasToDoWith: MotifValue[] = Array.from({length: randInt(1, 3)}, () => pickAnyMotif(pools));
     const lie = maybe() ? pickAnyMotif(pools) : null;
@@ -109,8 +109,8 @@ function generateMentor(
     const supernaturalBeing = maybe() ? pickSupernatural(pools) : null;
     const talismans: MotifValue[] = Array.from({length: randInt(1, 3)}, () => pick(pools, "Object"));
     const learnsAbout = pickModifierOf(villain, otherWorld, hero)
-        ?? pickAny(pools, "Event", "Condition", "Outcome", "Action", "Attribute").text;
-    const trial = maybe() ? pickAny(pools, "Event", "Condition", "Outcome", "Action") : null;
+        ?? pickAny(pools, "Condition", "Outcome", "Action", "Attribute").text;
+    const trial = maybe() ? pickAny(pools,"Condition", "Outcome", "Action") : null;
 
     const heroGainsMod = maybe() ? randomCharMod(pools) : null;
     const heroLosesMod = maybe() ? randomCharMod(pools) : null;
@@ -120,13 +120,13 @@ function generateMentor(
 
 function generateThreshold(pools: PoolData, otherWorld: Place): ThresholdBeat {
     const hasToDoWith = maybe() ? pickAnyMotif(pools) : null;
-    const companionConflict = maybe() ? pickAny(pools, "Object", "Outcome", "Event", "Action", "Condition", "Attribute") : null;
+    const companionConflict = maybe() ? pickAny(pools, "Object", "Outcome", "Action", "Condition", "Attribute") : null;
     return {type: "threshold", title: "Crossing the First Threshold", hasToDoWith, companionConflict, otherWorld};
 }
 
 function generateTests(pools: PoolData): TestsBeat {
     const tests: MotifValue[] = Array.from(
-        {length: randInt(1, 3)}, () => pickAny(pools, "Event", "Condition", "Outcome", "Action"),
+        {length: randInt(1, 3)}, () => pickAny(pools,"Condition", "Outcome", "Action"),
     );
     const allies: Entity[] = Array.from(
         {length: randInt(1, 3)},
@@ -147,7 +147,7 @@ function generateCave(pools: PoolData, allies: Entity[]): CaveBeat {
     );
     const toGetTalisman = maybe() ? pick(pools, "Object") : null;
     const cursedBane = maybe() ? pick(pools, "Object") : null;
-    const toUndergo = maybe() ? pickAny(pools, "Event", "Condition", "Outcome", "Action") : null;
+    const toUndergo = maybe() ? pickAny(pools,  "Condition", "Outcome", "Action") : null;
 
     return {type: "cave", title: "Approach to the Inmost Cave", place, toRescue, toGetTalisman, cursedBane, toUndergo};
 }
@@ -200,8 +200,8 @@ function generateRoadBack(pools: PoolData): RoadBackBeat {
 }
 
 function generateResurrection(pools: PoolData): ResurrectionBeat {
-    const contendWith = pickAny(pools, "Being", "Event", "Condition", "Outcome", "Action");
-    const toAchieve = pickAny(pools, "Being", "Outcome", "Event", "Condition", "Action");
+    const contendWith = pickAny(pools, "Being", "Condition", "Outcome", "Action");
+    const toAchieve = pickAny(pools, "Being", "Outcome", "Condition", "Action");
 
     const heroGainsMod = maybe() ? randomCharMod(pools) : null;
     const heroLosesMod = maybe() ? randomCharMod(pools) : null;
@@ -213,7 +213,7 @@ function generateElixir(pools: PoolData): ElixirBeat {
     const elixir = pick(pools, "Object");
     const returnsTo = pick(pools, "Place");
     const transformation = maybe() ? pickBeing(pools) : pick(pools, "Condition");
-    const resolution = pickAny(pools, "Outcome", "Event", "Condition");
+    const resolution = pickAny(pools, "Outcome", "Condition");
 
     return {type: "elixir", title: "Return with the Elixir", elixir, returnsTo, transformation, resolution};
 }

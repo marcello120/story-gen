@@ -5,7 +5,6 @@
 export type Category =
     | "Action"
     | "Place"
-    | "Event"
     | "Object"
     | "Origin"
     | "Attribute"

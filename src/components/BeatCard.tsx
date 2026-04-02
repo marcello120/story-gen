@@ -416,7 +416,7 @@ function CallToAdventureContent({beat, story, pools, update}: {
                            icon={<Zap className={ICON_CLASS}/>}
                            onSwap={(v) => update((b) => ({...b, inciting: v} as Beat))}
                            onRemove={() => update((b) => ({...b, inciting: null} as Beat))}
-                           onAdd={() => update((b) => ({...b, inciting: pickAny(pools, "Event", "Condition", "Outcome", "Action")} as Beat))}/>
+                           onAdd={() => update((b) => ({...b, inciting: pickAny(pools, "Condition", "Outcome", "Action")} as Beat))}/>
             <OptionalMotif label="Herald" value={beat.herald} pools={pools}
                            icon={<Megaphone className={ICON_CLASS}/>}
                            onSwap={(v) => update((b) => ({...b, herald: v} as Beat))}
@@ -520,14 +520,14 @@ function MentorContent({beat, story, pools, update}: {
                           onRemove={() => update((b) => ({...b, learnsAbout: null} as Beat))}
                           onAdd={() => {
                               const value = pickModifierOf(ordinaryWorld.villain, threshold.otherWorld, ordinaryWorld.hero)
-                                  ?? pickAny(pools, "Event", "Condition", "Outcome", "Action", "Attribute").text;
+                                  ?? pickAny(pools,  "Condition", "Outcome", "Action", "Attribute").text;
                               update((b) => ({...b, learnsAbout: value} as Beat));
                           }}/>
             <OptionalMotif label="Trial" value={beat.trial} pools={pools}
                            icon={<Flame className={ICON_CLASS}/>}
                            onSwap={(v) => update((b) => ({...b, trial: v} as Beat))}
                            onRemove={() => update((b) => ({...b, trial: null} as Beat))}
-                           onAdd={() => update((b) => ({...b, trial: pickAny(pools, "Event", "Condition", "Outcome", "Action")} as Beat))}/>
+                           onAdd={() => update((b) => ({...b, trial: pickAny(pools,  "Condition", "Outcome", "Action")} as Beat))}/>
             <OptionalModifier label="Hero gains modifier" mod={beat.heroGainsMod}
                               icon={<ArrowUp className={ICON_CLASS}/>}
                               field="heroGainsMod" pools={pools} update={update}
@@ -556,7 +556,7 @@ function ThresholdContent({beat, pools, update}: {
                            icon={<MessageSquareWarning className={ICON_CLASS}/>}
                            onSwap={(v) => update((b) => ({...b, companionConflict: v} as Beat))}
                            onRemove={() => update((b) => ({...b, companionConflict: null} as Beat))}
-                           onAdd={() => update((b) => ({...b, companionConflict: pickAny(pools, "Object", "Outcome", "Event", "Action", "Condition", "Attribute")} as Beat))}/>
+                           onAdd={() => update((b) => ({...b, companionConflict: pickAny(pools, "Object", "Outcome", "Action", "Condition", "Attribute")} as Beat))}/>
             <PlaceDisplay label="Other World" place={beat.otherWorld} suffix=""
                           icon={<Globe className={ICON_CLASS}/>}
                           {...placeFieldProps("otherWorld", update, pools)}/>
@@ -576,7 +576,7 @@ function TestsContent({beat, pools, update}: {
         <>
             <MotifArrayEditor label="Test" items={beat.tests}
                               icon={<Target className={ICON_CLASS}/>}
-                              {...motifArrayFieldProps("tests", update, pools, () => pickAny(pools, "Event", "Condition", "Outcome", "Action"), 5)}/>
+                              {...motifArrayFieldProps("tests", update, pools, () => pickAny(pools,  "Condition", "Outcome", "Action"), 5)}/>
             <EntityArrayEditor groupLabel="Allies" entities={beat.allies}
                                icon={<Shield className={ICON_CLASS}/>}
                                {...entityArrayFieldProps("allies", update, pools, newAlly, 5)}/>
@@ -614,7 +614,7 @@ function CaveContent({beat, pools, update}: {
                            icon={<Flame className={ICON_CLASS}/>}
                            onSwap={(v) => update((b) => ({...b, toUndergo: v} as Beat))}
                            onRemove={() => update((b) => ({...b, toUndergo: null} as Beat))}
-                           onAdd={() => update((b) => ({...b, toUndergo: pickAny(pools, "Event", "Condition", "Outcome", "Action")} as Beat))}/>
+                           onAdd={() => update((b) => ({...b, toUndergo: pickAny(pools,  "Condition", "Outcome", "Action")} as Beat))}/>
         </>
     );
 }

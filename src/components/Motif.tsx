@@ -21,7 +21,7 @@ export default function Motif({value, pools, onSwap}: MotifProps) {
     return (
         <span className="inline-flex items-baseline gap-1">
             <span className="motif-text">
-                {value.text}
+                {value.text.replace(/\(([^)]+)\)/g, "(or $1)")}
             </span>
             <span className="pool-tag">
                 [{value.pool}]

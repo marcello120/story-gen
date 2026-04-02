@@ -55,7 +55,7 @@ export function pickSupernatural(pools: PoolData): MotifValue {
 }
 
 export function pickAnyMotif(pools: PoolData): MotifValue {
-    return pickAny(pools, "Event", "Condition", "Outcome", "Action", "Object", "Place", "Origin", "Attribute");
+    return pickAny(pools, "Condition", "Outcome", "Action", "Object", "Place", "Origin", "Attribute");
 }
 
 // ---------------------------------------------------------------------------
